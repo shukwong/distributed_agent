@@ -88,7 +88,7 @@
   "limitations": [
     "Synthetic inputs only; no biological discovery or validation.",
     "Single report generation and direct query; parallel scale not tested.",
-    "Ordinary shell-based generation blocked by host namespace exhaustion; inline mode disabled shell/web.",
+    "Ordinary shell-based generation blocked by the host's configured zero user-namespace limit; inline mode disabled shell/web.",
     "Query completed with a nonfatal unknown enterprise feature warning."
   ],
   "wheel_smoke": {

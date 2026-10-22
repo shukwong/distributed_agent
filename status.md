@@ -1,11 +1,13 @@
 # Status
 
-Last updated: 2026-10-22 19:24 EDT
+Last updated: 2026-10-22 19:31 EDT
 
 ## Goal
 
 First milestone: fork DistributedAgents, obtain a working baseline, generate
 and query a tiny new corpus before choosing a biological pilot or scaling.
+That milestone is complete. Current follow-up: diagnose and repair the model
+shell namespace failure without weakening isolation.
 
 ## Current State
 
@@ -20,6 +22,14 @@ and query a tiny new corpus before choosing a biological pilot or scaling.
   https://github.com/shukwong/distributed_agent/pull/1 (base is this fork, not upstream).
   First milestone complete; no research process remains running.
 - No biological discovery, real-dataset pilot or thousand-agent scaling claimed.
+- Namespace diagnosis complete: cn1073 has `user.max_user_namespaces=0`, also
+  explicitly configured in root-owned `/etc/sysctl.conf:86`. This disables new
+  user namespaces; it is not a demonstrated leak or disk-space shortage.
+  Harmless `unshare` and `bwrap` probes both reproduce ENOSPC. Host repair needs
+  an administrator-approved namespace-enabled environment; not resolved locally.
+- Diagnostic receipt: `runs/namespace_diagnosis/receipt.json`. Ready-to-send
+  support draft: `runs/namespace_diagnosis/hpc-support-request.md`. No message
+  has been sent and no host settings have been changed.
 
 ## Runtime and Durable Outputs
 
@@ -66,11 +76,16 @@ Reproduction commands for fresh directories are in `BOOTSTRAP.md`.
 
 ## Next Actions
 
-1. Review draft PR #1; the implementation is on `research/bootstrap-corpus`.
+1. For shell execution, ask NIH HPC whether it offers an approved namespace-enabled
+   environment or can support the required setting for an isolated allocation.
+   Use the saved support draft. Restarting agents or freeing disk cannot change
+   a configured zero limit. Once provided, rerun the harmless namespace probes
+   and native sandbox smoke before another model call.
+2. Review draft PR #1; the implementation is on `research/bootstrap-corpus`.
    The fork's default `main` still follows upstream until the PR is merged.
-2. Before resuming runs, inspect existing manifests and scheduler state; use new
+3. Before resuming runs, inspect existing manifests and scheduler state; use new
    run directories rather than overwriting or rerunning completed outputs.
-3. Choose one public cancer/mutation or aging dataset and adapt the source-report
+4. Choose one public cancer/mutation or aging dataset and adapt the source-report
    task to that assay. Define independent replication and null checks before
    a modest parallel pilot. Original prompt remains Perturb-seq-specific.
 
@@ -81,8 +96,8 @@ Reproduction commands for fresh directories are in `BOOTSTRAP.md`.
 - 2026-10-22: System `/usr/bin/python3` is 3.6.8; MCP must use the active Python
   environment. A nested venv does not inherit parent-venv dependencies; wheel
   smoke tests must install declared dependencies in their isolated environment.
-- 2026-10-22: Host namespace exhaustion blocks both outer bwrap and native model
-  shell commands. The bounded complete-input mode disables shell/web rather
+- 2026-10-22: A configured zero user-namespace limit blocks both outer bwrap and
+  native model shell commands; initial ENOSPC wording was misleading. The bounded complete-input mode disables shell/web rather
   than weakening the native sandbox. Large-input shell execution remains unverified.
 - 2026-10-22: This is a sparse, LFS-skipping checkout. Do not run `git ls-tree -l`
   on a partial clone just to list paths; it fetches missing blobs. Use `--name-only`.

@@ -98,6 +98,14 @@ and the wheel imported and launched successfully from a clean virtual
 environment. The query completed with a nonfatal warning about an unknown
 enterprise CLI feature requirement; evidence calls and the answer succeeded.
 
+Follow-up diagnosis on cn1073 found `user.max_user_namespaces=0`, explicitly
+configured in `/etc/sysctl.conf`. This disables namespace creation; the ENOSPC
+error is not a disk-space problem or evidence of leaked namespaces. Repair
+requires an administrator-approved environment supporting the required user
+namespaces. A restart, more disk space, or a bubblewrap upgrade cannot change
+that configured limit. The restricted shell path remains unverified until such
+an environment is available.
+
 ## Verification and next scope
 
 Run the focused regression suite and wheel check:
