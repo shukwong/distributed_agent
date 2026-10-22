@@ -1,6 +1,6 @@
 # Status
 
-Last updated: 2026-10-22 19:22 EDT
+Last updated: 2026-10-22 19:24 EDT
 
 ## Goal
 
@@ -16,7 +16,9 @@ and query a tiny new corpus before choosing a biological pilot or scaling.
   dataset context, optional graph and interpreter portability implemented.
 - Live synthetic report generation and native MCP query succeeded. See
   `examples/bootstrap/verified_run/` for the reviewable outputs and hashes.
-- Publication of the tested branch/review request is the remaining handoff step.
+- Published implementation commit: `8ed5d03`. Draft review PR:
+  https://github.com/shukwong/distributed_agent/pull/1 (base is this fork, not upstream).
+  First milestone complete; no research process remains running.
 - No biological discovery, real-dataset pilot or thousand-agent scaling claimed.
 
 ## Runtime and Durable Outputs
@@ -64,7 +66,8 @@ Reproduction commands for fresh directories are in `BOOTSTRAP.md`.
 
 ## Next Actions
 
-1. Confirm branch/PR publication and retain its URL here.
+1. Review draft PR #1; the implementation is on `research/bootstrap-corpus`.
+   The fork's default `main` still follows upstream until the PR is merged.
 2. Before resuming runs, inspect existing manifests and scheduler state; use new
    run directories rather than overwriting or rerunning completed outputs.
 3. Choose one public cancer/mutation or aging dataset and adapt the source-report
