@@ -13,6 +13,7 @@ from pathlib import Path
 from ..corpus.registry import CorpusRelease, get_release
 from ..query import CodexQueryOptions, QueryRequest, QueryResult
 from ..query.access import (
+    CORPUS_MCP_PYTHON,
     _codex_input_roots,
     _codex_passthrough_env,
 )
@@ -193,7 +194,7 @@ if any(result["forbidden"].values()):
     raise SystemExit(3)
 """.strip()
     inner = [
-        "/usr/bin/python3",
+        str(CORPUS_MCP_PYTHON),
         "-c",
         script,
         str(canary_dir),

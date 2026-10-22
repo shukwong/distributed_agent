@@ -23,14 +23,14 @@ def add_parser(subcommands: argparse._SubParsersAction) -> None:
     parser.add_argument("gene_target", help="Gene symbol, for example BDNF.")
     parser.add_argument(
         "--parquet-path",
-        required=True,
-        help="Path to the Perturb-seq parquet rendered into the canonical prompt.",
+        default="",
+        help="Perturb-seq parquet for live generation (optional for report import).",
     )
     parser.add_argument(
         "--max-turns",
         type=int,
-        default=50,
-        help="Maximum Agents SDK turns before MaxTurnsExceeded (default 50).",
+        default=None,
+        help="Legacy option; unsupported by reconstructed Codex backend. Use --timeout-seconds.",
     )
     parser.add_argument(
         "--reasoning-effort",
@@ -41,6 +41,24 @@ def add_parser(subcommands: argparse._SubParsersAction) -> None:
         "--out-dir",
         default="results/distributed_agents/build",
         help="Output root; build artifacts land in <out-dir>/<gene>/.",
+    )
+    parser.add_argument(
+        "--report-path", default="",
+        help="Import and validate an existing caller-owned report; invokes no model.",
+    )
+    parser.add_argument("--codex-executable", default="codex")
+    parser.add_argument("--codex-auth", choices=("chatgpt", "apikey"), default="chatgpt")
+    parser.add_argument(
+        "--no-codex-bwrap", dest="codex_bwrap", action="store_false", default=True,
+        help="Disable the outer enclosure only inside another trusted sandbox.",
+    )
+    parser.add_argument(
+        "--timeout-seconds", type=float, default=900,
+        help="Wall-clock limit for live Codex generation (default 900).",
+    )
+    parser.add_argument(
+        "--inline-small-input", action="store_true",
+        help="Supply complete tiny Parquet data inline (<=100 rows, <=64 KiB JSON); disable shell and web tools.",
     )
     parser.add_argument("--deliverable-path", default="")
     parser.add_argument("--model", default=DEFAULT_BUILD_MODEL)
@@ -55,9 +73,15 @@ def run(args: argparse.Namespace, _parser: argparse.ArgumentParser) -> int:
         build_findings_report(
             BuildRequest(
                 gene_target=args.gene_target,
-                parquet_path=Path(args.parquet_path),
+                parquet_path=Path(args.parquet_path) if args.parquet_path else None,
                 out_dir=out,
                 model=args.model,
+                report_path=Path(args.report_path) if args.report_path else None,
+                codex_executable=args.codex_executable,
+                codex_auth=args.codex_auth,
+                codex_bwrap=args.codex_bwrap,
+                timeout_seconds=args.timeout_seconds,
+                inline_small_input=args.inline_small_input,
                 max_turns=args.max_turns,
                 reasoning_effort=args.reasoning_effort,
                 skills_destination=args.skills_destination,
@@ -67,7 +91,7 @@ def run(args: argparse.Namespace, _parser: argparse.ArgumentParser) -> int:
                 ),
             )
         )
-    except (BuildError, FileNotFoundError, ValueError) as exc:
+    except (BuildError, OSError, ValueError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 1
     print(f"wrote {out}")

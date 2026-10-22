@@ -1,0 +1,116 @@
+{
+  "source_sha256": "26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52",
+  "complete": true,
+  "row_count": 12,
+  "schema": "target: string\ngroup: string\nsample: string\nreadout: double\ngene_target: string\ndataset_kind: string\nnote: string",
+  "rows": [
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "control",
+      "sample": "A1",
+      "readout": 9.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "control",
+      "sample": "A2",
+      "readout": 10.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "control",
+      "sample": "A3",
+      "readout": 11.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "perturbed",
+      "sample": "A4",
+      "readout": 13.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "perturbed",
+      "sample": "A5",
+      "readout": 14.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_ALPHA",
+      "group": "perturbed",
+      "sample": "A6",
+      "readout": 15.0,
+      "gene_target": "SYNTH_ALPHA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "control",
+      "sample": "B1",
+      "readout": 9.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "control",
+      "sample": "B2",
+      "readout": 10.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "control",
+      "sample": "B3",
+      "readout": 11.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "perturbed",
+      "sample": "B4",
+      "readout": 9.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "perturbed",
+      "sample": "B5",
+      "readout": 10.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    },
+    {
+      "target": "SYNTH_BETA",
+      "group": "perturbed",
+      "sample": "B6",
+      "readout": 11.0,
+      "gene_target": "SYNTH_BETA",
+      "dataset_kind": "synthetic_smoke_fixture",
+      "note": "Invented arithmetic fixture, not biological observations. Compute group means only; no significance or mechanistic inference."
+    }
+  ]
+}

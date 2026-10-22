@@ -8,14 +8,15 @@ DistributedAgents has four runtime command surfaces:
 2. `distributed_agents chat` provides a persistent terminal session over that same
    adaptive runtime while retaining the Codex allowlist sandbox.
 3. `distributed_agents build` generates the first-stage source reports used to construct
-   corpora through the OpenAI Agents SDK.
+   corpora through a reconstructed Codex backend, or imports a caller-owned report.
 4. `distributed_agents corpus` inspects and validates separately installed corpus
    releases.
 
 The default installation supports the Codex query/chat path and corpus
 inspection. Install `distributed_agents[api]` for the direct query backend,
-`distributed_agents[build]` for corpus authoring, and `distributed_agents[analysis]` when host-side
-Parquet inspection is required.
+`distributed_agents[analysis]` when host-side Parquet inspection or the small-input
+bootstrap mode is required. The reconstructed Codex builder needs no Agents SDK.
+See [its scope and limits](build/README.md).
 
 ## Query modes
 
@@ -100,23 +101,11 @@ under the target directory. Appendix validation fails closed while preserving
 the report and diagnostics. The manifest records the model, usage, exact prompt
 IDs and hashes, and the appendix schema ID and hash.
 
-Corpus builders can normalize a complete perturbation universe with
-`python -m distributed_agents.build.normalization --help` or the corresponding
-`distributed_agents.build.normalization` Python API. The mapper consumes a caller-owned
-MGI 6.24 `MRK_List1.rpt.gz`, records its exact SHA-256, and emits explicit
-official-symbol, withdrawn-symbol, synonym, ambiguous, and unmapped outcomes.
-It never downloads MGI's mutable weekly report implicitly.
-
-Publication references use one common exact-identifier implementation but are
-normalized independently inside each release. Run
-`python -m distributed_agents.build.reference_normalization --help` against a release
-root to produce its source-linked DOI/PMID/PMCID mapping ledger. The mapper
-verifies the release manifest and reference-ledger hash, performs no network or
-fuzzy-title resolution, retains conflicts and unresolved rows explicitly, and
-never rewrites the immutable source references. Policy v2 also recognizes
-exact Europe PMC MED/PMC locators, excludes named regulatory and search-page
-URLs from publication identity, and records an audited selection when one
-exact DOI URL disambiguates a multi-DOI source row.
+This fork reconstructs the source-report path that was missing from the public
+upstream tree. It does not implement the upstream-advertised `normalization`
+or `reference_normalization` modules. The new `corpus.bootstrap` module packages
+validated reports into a small ledger-only release; see the repository's
+`examples/bootstrap/README.md` for a reproducible synthetic example.
 
 ## Run a query
 

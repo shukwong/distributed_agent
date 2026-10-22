@@ -1,0 +1,72 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "evidence_slug": "synthetic_synth_alpha_group_means",
+      "cell_type": null,
+      "genes": [
+        "SYNTH_ALPHA"
+      ],
+      "statistics": "Synthetic control n=3, values=9.0,10.0,11.0, mean=10.0; synthetic perturbed n=3, values=13.0,14.0,15.0, mean=14.0; perturbed-minus-control mean difference=+4.0 readout units; no inferential test performed.",
+      "description": "Synthetic software-fixture observation showing the constructed SYNTH_ALPHA group means; it is not a biological measurement or evidence of target engagement."
+    },
+    {
+      "evidence_id": "E002",
+      "evidence_slug": "synthetic_synth_beta_group_means",
+      "cell_type": null,
+      "genes": [
+        "SYNTH_BETA"
+      ],
+      "statistics": "Synthetic control n=3, values=9.0,10.0,11.0, mean=10.0; synthetic perturbed n=3, values=9.0,10.0,11.0, mean=10.0; perturbed-minus-control mean difference=0.0 readout units; no inferential test performed.",
+      "description": "Synthetic software-fixture comparator observation showing identical constructed SYNTH_BETA group means; it is not a biological negative result."
+    }
+  ],
+  "references": [],
+  "biological_findings": [
+    {
+      "finding_id": "F001",
+      "finding_type": "other",
+      "summary": "Synthetic software-test finding: SYNTH_ALPHA has a constructed perturbed-group mean of 14.0 versus a control-group mean of 10.0, for a +4.0-unit arithmetic difference.",
+      "why_it_matters": "This verifies that the report pipeline preserves the fixture's labeled-group arithmetic; it has no biological, mechanistic, clinical, or empirical interpretation.",
+      "cell_types": null,
+      "genes": [
+        "SYNTH_ALPHA"
+      ],
+      "comparators": null,
+      "direction": "synthetic perturbed mean higher by 4.0 readout units",
+      "confidence": "high",
+      "evidence_ids": [
+        "E001"
+      ],
+      "ref_ids": [],
+      "literature_status": "not_applicable_synthetic_fixture",
+      "main_caveats": "Invented software-smoke-test values; generic readout; no cell types, transcript measurements, biological replicate metadata, or inferential statistics."
+    },
+    {
+      "finding_id": "F002",
+      "finding_type": "cross_perturbation_contrast",
+      "summary": "Synthetic software-test finding: the constructed perturbed-minus-control difference is +4.0 for SYNTH_ALPHA and 0.0 for SYNTH_BETA.",
+      "why_it_matters": "This confirms that the pipeline can represent differing synthetic input patterns across target labels, but it does not establish biological divergence, relatedness, or specificity.",
+      "cell_types": null,
+      "genes": [
+        "SYNTH_ALPHA",
+        "SYNTH_BETA"
+      ],
+      "comparators": [
+        "SYNTH_BETA"
+      ],
+      "direction": "synthetic contrast: +4.0 versus 0.0 readout units",
+      "confidence": "high",
+      "evidence_ids": [
+        "E001",
+        "E002"
+      ],
+      "ref_ids": [],
+      "literature_status": "not_applicable_synthetic_fixture",
+      "main_caveats": "The targets are invented labels with no supplied biological relationship; comparison is limited to constructed group means, without inferential statistics."
+    }
+  ],
+  "literature_comparisons": [],
+  "pathways": [],
+  "cell_type_specificity": []
+}

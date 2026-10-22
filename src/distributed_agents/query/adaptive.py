@@ -348,7 +348,12 @@ def prepare_adaptive_context(
         runtime_env.get("BIOKG_REPORTS_PATH"),
         release.artifact("reports"),
     )
-    biokg = release.projection("biokg")
+    # Ledger-only releases have no graph projection. Keep the legacy fallback
+    # paths without making a graph a prerequisite for evidence queries.
+    try:
+        biokg = release.projection("biokg")
+    except CorpusRegistryError:
+        biokg = release.root / "projections" / "biokg"
     assignments = _release_artifact(
         release,
         "claim_assignments",

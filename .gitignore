@@ -1,5 +1,5 @@
 .pixi/
-build/
+/build/
 dist/
 *.egg-info/
 __pycache__/
@@ -7,3 +7,5 @@ __pycache__/
 .env
 .ipynb_checkpoints/
 /runs/
+.venv/
+.pytest_cache/

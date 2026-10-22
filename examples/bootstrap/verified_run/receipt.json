@@ -1,0 +1,99 @@
+{
+  "kind": "synthetic engineering smoke test; not biological research",
+  "verified_at": "2026-10-22T23:18:52.210959+00:00",
+  "upstream_commit": "c20445d929f5aedce1d539ef6fbd8843b8c06e25",
+  "codex_version": "0.160.0",
+  "model": "gpt-5.6-sol",
+  "input_sha256": "26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52",
+  "input_snapshot_complete": true,
+  "build": {
+    "status": "completed",
+    "usage": {
+      "total_tokens": 15668,
+      "requests": 1,
+      "input_tokens": 13615,
+      "output_tokens": 2053,
+      "cache_read_input_tokens": 0,
+      "reasoning_output_tokens": 277
+    },
+    "contracts": {
+      "prompts/base_scientist_contract.md": {
+        "id": "reconstructed-v1/prompts/base_scientist_contract.md",
+        "sha256": "ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03"
+      },
+      "prompts/findings_report.md": {
+        "id": "reconstructed-v1/prompts/findings_report.md",
+        "sha256": "7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128"
+      },
+      "schemas/structured_appendix.schema.json": {
+        "id": "reconstructed-v1/schemas/structured_appendix.schema.json",
+        "sha256": "55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac"
+      }
+    },
+    "inline_small_input": true
+  },
+  "query": {
+    "status": "completed_with_warnings",
+    "usage": {
+      "total_tokens": 65635,
+      "requests": 1,
+      "input_tokens": 64900,
+      "output_tokens": 735,
+      "cache_read_input_tokens": 48640,
+      "reasoning_output_tokens": 138
+    },
+    "warnings": [
+      "Ignoring unknown `features` requirement `ultrafast_mode` from requirements layers: enterprise-managed requirements Ultra Fast mode access (rbac-ultrafast-mode), enterprise-managed requirements Computer History access (rbac-computer-history)"
+    ],
+    "successful_native_tool_calls": {
+      "describe": 2,
+      "calibrate": 2,
+      "query_ledger": 1,
+      "resolve_evidence": 2
+    }
+  },
+  "expected_arithmetic": {
+    "SYNTH_ALPHA": {
+      "control_mean": 10,
+      "perturbed_mean": 14,
+      "difference": 4
+    },
+    "SYNTH_BETA": {
+      "control_mean": 10,
+      "perturbed_mean": 10,
+      "difference": 0
+    }
+  },
+  "regression_tests": {
+    "passed": 39
+  },
+  "corpus_doctor": {
+    "ok": true,
+    "checks": 37
+  },
+  "files": {
+    "input_snapshot.json": {
+      "sha256": "3d1a25e17af9fde3ff831bc1a73c5843df605eaaea5a46e96c4748df3fdd5a9b"
+    },
+    "query.md": {
+      "sha256": "4252a7a187fe774241f25e8007dc973c02ff789235333580508b1cb7b16e08f8"
+    },
+    "report.md": {
+      "sha256": "8fd40d0658238d5cd7a4da21a78b808d18279c65248b034458f4de09f0f62bb9"
+    },
+    "structured_appendix.json": {
+      "sha256": "3def590316015af4bdafa20f6d8172bdfd65f5d4bbca4aa035e333fd9a77628f"
+    }
+  },
+  "limitations": [
+    "Synthetic inputs only; no biological discovery or validation.",
+    "Single report generation and direct query; parallel scale not tested.",
+    "Ordinary shell-based generation blocked by host namespace exhaustion; inline mode disabled shell/web.",
+    "Query completed with a nonfatal unknown enterprise feature warning."
+  ],
+  "wheel_smoke": {
+    "passed": true,
+    "isolated_environment": true
+  },
+  "pip_check": "passed"
+}

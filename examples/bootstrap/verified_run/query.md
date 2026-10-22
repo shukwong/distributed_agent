@@ -1,0 +1,4 @@
+- `SYNTH_ALPHA:F001` → `SYNTH_ALPHA:E001`: control mean **10.0**, perturbed mean **14.0**, difference **+4.0** readout units.
+- `SYNTH_ALPHA:F002` → `SYNTH_ALPHA:E001` and `SYNTH_ALPHA:E002`: comparator **SYNTH_BETA** has control mean **10.0**, perturbed mean **10.0**, difference **0.0**. Thus the constructed contrast is **+4.0 versus 0.0**.
+
+These values support no biological conclusion because they are invented software-fixture observations using synthetic target labels and a generic readout, with no biological measurements, replicate metadata, target-engagement evidence, or inferential testing. Confidence describes the report author’s certainty about fixture arithmetic, not biological probability.
