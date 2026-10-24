@@ -2,8 +2,12 @@
 
 Prepared 2026-10-24. This document is the starting point for a new Codex task on
 FRCE (called FRC in the conversation). Read `status.md` next, then `BOOTSTRAP.md`.
-The commands below are a proposed FRCE runbook; they have not been executed on
-FRCE by the originating task.
+FRCE continuation has verified the no-model stages: the 12-row Parquet reads
+inside the real outer enclosure, two deterministic reports package successfully,
+and the reference release doctor reports zero errors. The regression suite now
+has 50 passing tests. See `examples/bootstrap/frce_preflight/receipt.json`.
+Native Codex sandbox and shell-enabled live generation/query still await launch;
+the complete FRCE milestone is not yet established.
 
 ## Objective and current position
 
@@ -160,6 +164,8 @@ Load a suitable Python using FRCE's available tools, then from the repo root:
 ```bash
 python3 --version
 python3 -m venv .venv
+# FRCE's Python module injects shared packages; keep the venv self-contained.
+unset PYTHONHOME PYTHONPATH
 .venv/bin/python -m pip install -e '.[analysis]' pytest build wheel setuptools
 .venv/bin/python -m pip check
 .venv/bin/python -m pytest -q tests
@@ -176,6 +182,8 @@ Set these in the ordinary allocation terminal, replacing the two placeholders:
 
 ```bash
 set -euo pipefail
+unset PYTHONHOME PYTHONPATH
+export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 export FRCE_CODEX_BIN='/absolute/path/to/native/codex'
 export FRCE_MODEL='YOUR_AVAILABLE_MODEL'
 "$FRCE_CODEX_BIN" --version
@@ -191,7 +199,7 @@ Record hostname, allocation/job ID, cwd, launch command and native CLI version
 alongside these receipts. Keep the same environment variables for subsequent
 steps. Run the corrected sandbox probe above and inspect its exit status.
 
-### Known pending Python portability issue
+### Verified Python portability repair
 
 Before spending model tokens, verify the exact outer enclosure can run its
 selected Python, import `pyarrow.parquet`, and read the declared input:
@@ -208,20 +216,20 @@ This helper constructs the real builder enclosure, replaces the Codex command
 with a Python read probe, and checks the selected environment and 12-row input.
 It stages no credentials and makes no model call. It tests only the outer
 layer; the native sandbox and live model shell still need their own checks.
-The helper was syntax/CLI-checked on Biowulf; execution awaits FRCE.
+The helper now passes on FRCE with Python 3.12.0 and pyarrow 26.0.0: it selects
+the project venv, imports pyarrow, and reads all 12 declared rows.
 
-A host venv import alone is insufficient. At handoff, `runtime/codex.py` constructs
-model-shell PATH from `Path(sys.executable).resolve().parent`; this can select
-the base interpreter rather than the venv. Its outer mount list includes
-`sys.prefix` but omits `sys.base_prefix`; the builder can consequently miss
-Python installed outside the default OS roots. Query code has additional mounts.
+A host venv import alone is insufficient. The runtime now retains the venv bin
+directory with `.absolute().parent` and mounts the Python prefix, base prefixes,
+and interpreter directory read-only. Non-inline live tasks name the selected
+interpreter explicitly. Focused regressions cover external module installations
+and shell quoting. Explicit positive numerical thread caps also survive the
+framework and query-shell environment filters.
 
-If this probe fails, fix the runtime's interpreter selection and read-only
-Python mounts, then add a focused regression check and rerun the probe. A likely
-repair is to retain the venv bin directory with `.absolute().parent` and include
-needed base-prefix paths. Verify on the actual FRCE layout; do not claim the
-host probe or merely activating the venv proves model-shell availability.
-The model also needs an unambiguous interpreter path in its task context.
+On a fresh host, still run this probe before model calls. Unset `PYTHONHOME` and
+`PYTHONPATH` during both installation and execution: the FRCE module can otherwise
+make pip accept shared packages that disappear inside the enclosure. Passing
+this outer probe does not prove native model-shell execution works.
 
 Keep both the framework enclosure and native `workspace-write` sandbox enabled
 for the initial FRCE attempt. Their combined execution path is still unverified.

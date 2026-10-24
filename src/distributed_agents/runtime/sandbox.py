@@ -23,6 +23,12 @@ DEFAULT_OS_ROOTS: tuple[str, ...] = (
     "/opt",
 )
 FAKE_HOME = "/sandbox-home"
+THREAD_LIMIT_ENV_KEYS: tuple[str, ...] = (
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+)
 
 
 def clean_env(
@@ -40,6 +46,12 @@ def clean_env(
         "LC_ALL": "C.UTF-8",
         "LANG": "C.UTF-8",
     }
+    # Keep allocation-sized limits chosen by the caller. Do not derive defaults
+    # from the host CPU count, which may include CPUs outside its allocation.
+    for key in THREAD_LIMIT_ENV_KEYS:
+        value = os.environ.get(key)
+        if value and value.isascii() and value.isdecimal() and int(value) > 0:
+            env[key] = value
     for key in passthrough_keys:
         value = os.environ.get(key)
         if value is not None:

@@ -146,7 +146,16 @@ def codex_run_command(
         return cmd
     toolchain = sandbox_runtime.codex_toolchain_paths(codex_executable)
     bin_dir = str(toolchain[0]) if toolchain else None
-    python_bin = Path(sys.executable).resolve().parent
+    # Preserve the venv entrypoint: resolving its symlink would select the base
+    # interpreter and lose the environment's installed analysis packages.
+    python_bin = Path(sys.executable).absolute().parent
+    python_roots = [
+        Path(sys.prefix),
+        Path(sys.exec_prefix),
+        Path(sys.base_prefix),
+        Path(sys.base_exec_prefix),
+        Path(sys.executable).resolve().parent,
+    ]
     path_parts = [str(python_bin)] + ([bin_dir] if bin_dir else []) + [
         "/usr/bin",
         "/bin",
@@ -154,7 +163,7 @@ def codex_run_command(
     return sandbox_runtime.bwrap_allowlist_command(
         cmd,
         chdir=str(run_dir),
-        allow_ro=[Path(sys.prefix), *input_roots, *toolchain],
+        allow_ro=[*python_roots, *input_roots, *toolchain],
         allow_rw=[run_dir],
         path=":".join(path_parts),
         extra_binds=sandbox_binds,

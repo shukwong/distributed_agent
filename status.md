@@ -26,6 +26,13 @@ pilot and parallel scaling have not started.
   checkout, setup, commands, known runtime issues and acceptance criteria.
 - `examples/bootstrap/probe_outer_python.py` checks the actual outer enclosure's
   Python and Parquet access without launching a model or staging credentials.
+- FRCE continuation repaired venv selection, external Python mounts, explicit
+  task interpreter context, and propagation of positive thread caps. The actual
+  outer enclosure reads the 12-row fixture successfully. Two deterministic
+  reference builds package and pass the corpus doctor. Receipt:
+  `examples/bootstrap/frce_preflight/receipt.json`.
+- Native sandbox probe and two live model builds/query have not launched in this
+  continuation; the shell-enabled milestone remains incomplete.
 
 ## Host Diagnosis and FRCE Follow-up
 
@@ -61,11 +68,16 @@ pilot and parallel scaling have not started.
 - Full host-specific handoff details remain in ignored `runs/frce_handoff_private/`
   locally. Keep hostnames, allocation IDs and absolute machine-specific paths in
   local run receipts, not public GitHub commits. Recreate the environment on FRCE.
+- FRCE raw diagnostics, exact launch scripts and environment receipt are under
+  ignored `runs/frce-smoke.*/`; the local workspace `status.md` identifies the
+  active run and allocation. Inspect it before creating a new run.
 
 ## Verification
 
-- 39 regression tests passed. Wheel build and isolated install/CLI smoke passed;
-  `pip check` passed.
+- FRCE: 50 regression tests passed, `pip check` passed, outer Python/Parquet probe
+  passed, and the deterministic two-target release doctor passed with zero errors.
+- Historical Biowulf wheel build and isolated install/CLI smoke passed. They
+  were not repeated for these runtime-only changes.
 - Live release doctor: 37 checks, zero errors.
 - Live build: two evidence rows and two findings; differences +4 and 0 match the
   synthetic input. Codex 0.160.0, model `gpt-5.6-sol`, 15,668 total tokens.
@@ -77,15 +89,15 @@ pilot and parallel scaling have not started.
   empty report; it was excluded from the successful release.
 - FRCE handoff: eight Bash blocks passed syntax checks, diagnostic helper passed
   compile/help checks, all four reference artifact hashes match the receipt.
-  Diagnostic execution and the live FRCE workflow await FRCE.
+  Diagnostic execution now passes on FRCE; the live FRCE workflow awaits launch.
 
 ## Next Actions
 
-1. Read `FRCE_HANDOFF.md` and inspect the new host's allocation and existing work.
-2. Verify the actual outer enclosure's Python/Parquet access before model calls.
-   `runtime/codex.py` resolves the venv interpreter for PATH and omits the explicit
-   `sys.base_prefix` builder mount. Fix these portability issues if the probe
-   fails, preserving the intended interpreter and read-only runtime mounts.
+1. Read `FRCE_HANDOFF.md`, the local workspace handoff, and the existing run
+   outputs; verify the current allocation before resuming.
+2. Run the native sandbox probe from an ordinary allocation terminal or approved
+   host execution. The outer Python probe and deterministic reference are done;
+   do not recreate their output directories. Preserve both sandboxes.
 3. Complete two shell-enabled synthetic builds, package the release, run its
    doctor and a direct native-evidence query. Inspect actual input-read calls and
    numeric findings; schema success with empty ledgers is not milestone success.
@@ -107,3 +119,8 @@ pilot and parallel scaling have not started.
   Use `--name-only`. The fixture needs no upstream LFS corpus.
 - The bootstrap packager accepts textual companions, not binary Parquet. Preserve
   original input hashes in builder provenance.
+- FRCE `python/3.12` injects `PYTHONHOME` and shared-package `PYTHONPATH`. Unset
+  both for venv installs and launches; confirm dependencies inside the actual
+  outer enclosure, not only in the module-loaded host shell.
+- Environment scrubbing must retain explicitly chosen numerical thread caps;
+  parent exports alone do not bound the model shell if filters drop them.

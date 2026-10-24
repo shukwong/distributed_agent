@@ -120,6 +120,15 @@ Run the focused regression suite and wheel check:
 .venv/bin/python scripts/smoke_wheel.py
 ```
 
+FRCE continuation now passes 50 regression tests, the actual outer-enclosure
+Python/Parquet probe, and the deterministic two-target release doctor. The runtime
+preserves venv selection and explicit thread caps, mounts external Python roots
+read-only, and names the interpreter in live tasks. See the
+[FRCE preflight receipt](examples/bootstrap/frce_preflight/receipt.json).
+Native sandbox and shell-enabled live builds/query remain pending; these
+no-model checks do not complete that milestone. With FRCE Python modules, unset
+`PYTHONHOME` and `PYTHONPATH` before venv dependency installation and execution.
+
 [status.md](status.md) records the actual run results, paths, host limitations
 and next action. Model narratives are checked for schema and internal grounding;
 that does not prove scientific accuracy or novelty. The source-report prompt

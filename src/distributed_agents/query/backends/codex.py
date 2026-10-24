@@ -505,6 +505,7 @@ def _main_codex_config(
         "TMPDIR",
         "LANG",
         "LC_ALL",
+        *sandbox.THREAD_LIMIT_ENV_KEYS,
         "DISTRIBUTED_AGENTS_*",
         "BIOKG_*",
         "HTTP_PROXY",
