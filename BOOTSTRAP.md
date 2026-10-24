@@ -1,5 +1,9 @@
 # Bootstrap milestone
 
+For continuation on FRCE with normal model shell execution, start with
+[FRCE_HANDOFF.md](FRCE_HANDOFF.md). The live example below records the earlier
+inline-input workaround; it is not the next FRCE acceptance test.
+
 This research fork starts from upstream commit
 `c20445d929f5aedce1d539ef6fbd8843b8c06e25`. Its first milestone is a working
 source-report → validated evidence corpus → native evidence query path on new
@@ -98,13 +102,13 @@ and the wheel imported and launched successfully from a clean virtual
 environment. The query completed with a nonfatal warning about an unknown
 enterprise CLI feature requirement; evidence calls and the answer succeeded.
 
-Follow-up diagnosis on cn1073 found `user.max_user_namespaces=0`, explicitly
+Follow-up diagnosis in the original execution environment found `user.max_user_namespaces=0`, explicitly
 configured in `/etc/sysctl.conf`. This disables namespace creation; the ENOSPC
 error is not a disk-space problem or evidence of leaked namespaces. Repair
 requires an administrator-approved environment supporting the required user
 namespaces. A restart, more disk space, or a bubblewrap upgrade cannot change
-that configured limit. The restricted shell path remains unverified until such
-an environment is available.
+that configured limit. Full shell-based research execution remains unverified;
+continue with the FRCE guide linked above.
 
 ## Verification and next scope
 
