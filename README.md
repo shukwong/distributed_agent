@@ -1,5 +1,9 @@
 # Distributed Agents
 
+> Research fork: see [the bootstrap milestone](BOOTSTRAP.md) for the reconstructed
+> source-report builder, tiny synthetic corpus, verified run, and current limits.
+> The upstream manuscript and hosted-service documentation follows below.
+
 DistributedAgents is a framework for scaling biological interpretation across large perturbation screens. Applied to a whole-brain in vivo CRISPR Perturb-seq atlas, the pipeline assigns independent AI agents to individual perturbations, integrates cell-type-resolved expression data with literature databases, and creates narrative and structured reports for each perturbation. The framework synthesizes across reports to recover known biology, predict held-out responses, identify relationships between perturbations, and prioritize hypotheses for follow-up. This repository provides the agent runtime, corpus tooling, and notebooks used for the manuscript’s analyses, figures, and supplementary tables.
 
 ## Use the hosted service

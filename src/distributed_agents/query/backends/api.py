@@ -18,7 +18,7 @@ from ...skills.registry import (
 from ..adaptive import prepare_adaptive_context
 from ..audit import audit_adaptive_artifacts
 from ..context import (
-    canonical_dataset_context_path,
+    selected_dataset_context_path,
     sha256_path,
     snapshot_dataset_context,
 )
@@ -157,7 +157,7 @@ def run_api_query(request: QueryRequest, *, model: str) -> QueryResult:
 
     dataset_context_path = pipeline_dir / "dataset_context.md"
     snapshot_dataset_context(
-        canonical_dataset_context_path(Path(skills_destination)),
+        selected_dataset_context_path(release, Path(skills_destination)),
         dataset_context_path,
         pipeline_dir / "dataset_context.json",
     )

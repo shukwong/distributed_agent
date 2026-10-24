@@ -1,0 +1,88 @@
+# Perturbation Report: `SYNTH_ALPHA`
+
+This is a **software smoke test**, not a biological study. The input identifies itself as a `synthetic_smoke_fixture` containing invented arithmetic values rather than biological observations. Accordingly, all observations and findings below are explicitly synthetic. No biological mechanisms, empirical significance, or clinical implications are inferred.
+
+## Key Biological Findings
+
+- **[F001] Synthetic finding:** The constructed `SYNTH_ALPHA` perturbed group has a mean readout of 14.0, compared with 10.0 in its control group, an arithmetic difference of +4.0 readout units [E001]. This demonstrates that the reporting pipeline can detect and represent a synthetic group-level difference. It is not evidence of target engagement or a biological response.
+
+- **[F002] Synthetic finding:** The constructed comparator `SYNTH_BETA` has identical control and perturbed means of 10.0, whereas `SYNTH_ALPHA` has a +4.0 difference [E001] [E002]. This synthetic contrast tests whether the pipeline can distinguish a constructed positive pattern from a constructed null pattern. No biological relationship between these invented targets is implied.
+
+## Direct Dataset Observations
+
+**Synthetic observation [E001]:** `SYNTH_ALPHA` contains three control samples with readouts 9.0, 10.0, and 11.0, giving a mean of 10.0. It also contains three perturbed samples with readouts 13.0, 14.0, and 15.0, giving a mean of 14.0. The arithmetic perturbed-minus-control difference is +4.0 units.
+
+**Synthetic observation [E002]:** `SYNTH_BETA` contains three control samples and three perturbed samples. Both groups contain readouts 9.0, 10.0, and 11.0 and therefore both have a mean of 10.0. The arithmetic perturbed-minus-control difference is 0.0 units.
+
+The table has no cell-type field, expression matrix, gene-level response signature, pathway annotations, or replicate metadata beyond unique sample labels. Although `gene_target` equals `SYNTH_ALPHA` in the relevant records, the single generic `readout` is not identified as transcript abundance. It therefore cannot establish on-target transcript depletion or activation.
+
+No inferential statistics were performed. In particular, no p value, false-discovery rate, confidence interval, or claim of statistical significance is reported. The input explicitly characterizes its contents as invented arithmetic values and requests group means only.
+
+## Literature Context
+
+No literature search was conducted. `SYNTH_ALPHA` and `SYNTH_BETA` are fixture identifiers rather than supported biological gene symbols, and seeking biological literature for them would risk inventing a biological identity. There are consequently no literature-grounded claims or references.
+
+## Integrated Interpretation
+
+The only supported interpretation is about synthetic pipeline behavior. The fixture encodes a higher perturbed-group mean for `SYNTH_ALPHA` [F001] and an unchanged perturbed-group mean for `SYNTH_BETA`, producing a constructed cross-target contrast [F002].
+
+These patterns cannot be interpreted as perturbation efficacy, differential expression, buffering, pathway activity, cell-type selectivity, disease relevance, or therapeutic direction. The six `SYNTH_ALPHA` rows are sample-level arithmetic inputs, not documented biological replicates or cells.
+
+## Caveats
+
+- This is a software smoke test based on an explicitly synthetic fixture.
+- There are only three constructed values per target/group combination.
+- The independence and biological meaning of the sample labels are unspecified.
+- No cell types are present, so cell-type-specific analysis is impossible.
+- No transcript identities other than the invented target labels are present.
+- The generic readout is not defined as target-transcript abundance; on-target engagement cannot be quantified.
+- No gene-level signature or pathway data are available.
+- `SYNTH_BETA` is included only as a constructed comparator. The dataset supplies no biological relationship between it and `SYNTH_ALPHA`.
+- Arithmetic differences are descriptive only and carry no statistical or empirical significance.
+
+## References
+
+No references are included because the input is an invented software-test fixture with no supported biological target identity.
+
+## Missed-Finding Audit
+
+1. **Related targets or signature neighbors:** No supported complex member, paralog, receptor subunit, pathway neighbor, ligand/receptor, disease-family member, or signature neighbor is identified. `SYNTH_BETA` shows synthetic divergence from `SYNTH_ALPHA` at the level of constructed group means [F002], but no biological relationship may be inferred.
+2. **Engagement without downstream response:** This cannot be assessed because neither target-transcript engagement nor downstream molecular responses are measured.
+3. **Relationship to literature:** No contradiction, refinement, or extension can be evaluated because biological literature has no supported role for the invented identifiers.
+4. **Important weak signals:** No clinically or biologically important result can be identified. The available differences are constructed arithmetic patterns only.
+
+# Structured Appendix
+
+## Evidence JSONL
+
+```jsonl
+{"evidence_id":"E001","evidence_slug":"synthetic_alpha_group_means","cell_type":null,"genes":["SYNTH_ALPHA"],"statistics":"Synthetic values only: control n=3, values=[9.0,10.0,11.0], mean=10.0; perturbed n=3, values=[13.0,14.0,15.0], mean=14.0; arithmetic mean difference=+4.0 readout units; no inferential statistics.","description":"Synthetic software-test observation: the constructed SYNTH_ALPHA perturbed group has a higher mean generic readout than its constructed control group. This is not a biological measurement or evidence of target engagement."}
+{"evidence_id":"E002","evidence_slug":"synthetic_beta_group_means","cell_type":null,"genes":["SYNTH_BETA"],"statistics":"Synthetic values only: control n=3, values=[9.0,10.0,11.0], mean=10.0; perturbed n=3, values=[9.0,10.0,11.0], mean=10.0; arithmetic mean difference=0.0 readout units; no inferential statistics.","description":"Synthetic software-test observation: the constructed SYNTH_BETA control and perturbed groups have identical mean generic readouts. This comparator has no established biological relationship to SYNTH_ALPHA."}
+```
+
+## References JSONL
+
+```jsonl
+```
+
+## Biological Findings JSONL
+
+```jsonl
+{"finding_id":"F001","finding_type":"other","summary":"Synthetic software-test finding: the constructed SYNTH_ALPHA perturbed-group mean is 14.0 versus a control-group mean of 10.0.","why_it_matters":"This verifies that the report pipeline can preserve a constructed positive arithmetic difference; it does not establish target engagement, a biological response, or statistical significance.","cell_types":null,"genes":["SYNTH_ALPHA"],"comparators":null,"direction":"synthetic_higher_perturbed_mean","confidence":"high","evidence_ids":["E001"],"ref_ids":[],"literature_status":"not_applicable_synthetic_fixture","main_caveats":"Software smoke test with invented values; generic readout meaning is unspecified; three constructed samples per group; no cell types, gene-expression signature, biological replicate definition, or inferential statistics."}
+{"finding_id":"F002","finding_type":"cross_perturbation_contrast","summary":"Synthetic software-test finding: SYNTH_ALPHA has a constructed +4.0 perturbed-minus-control mean difference, whereas SYNTH_BETA has a constructed difference of 0.0.","why_it_matters":"This verifies that the pipeline can distinguish constructed positive and null patterns across fixture targets. It does not imply biological convergence, divergence, or relatedness.","cell_types":null,"genes":["SYNTH_ALPHA","SYNTH_BETA"],"comparators":["SYNTH_BETA"],"direction":"synthetic_divergence_in_group_mean_differences","confidence":"high","evidence_ids":["E001","E002"],"ref_ids":[],"literature_status":"not_applicable_synthetic_fixture","main_caveats":"The target names are invented, no biological relationship is supplied, and the comparison is descriptive arithmetic without statistical inference."}
+```
+
+## Literature Comparisons JSONL
+
+```jsonl
+```
+
+## Pathways JSONL
+
+```jsonl
+```
+
+## Cell Type Specificity JSONL
+
+```jsonl
+```

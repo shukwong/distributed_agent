@@ -39,6 +39,7 @@ from ...corpus.registry import (
 )
 from ..context import (
     canonical_dataset_context_path,
+    selected_dataset_context_path,
     sha256_path,
     snapshot_dataset_context,
 )
@@ -141,7 +142,7 @@ def run_codex_query(request: QueryRequest, *, model: str) -> QueryResult:
     dataset_context_path = pipeline_dir / "dataset_context.md"
     dataset_context_manifest_path = pipeline_dir / "dataset_context.json"
     snapshot_dataset_context(
-        canonical_dataset_context_path(Path(skills_destination)),
+        selected_dataset_context_path(corpus_release, Path(skills_destination)),
         dataset_context_path,
         dataset_context_manifest_path,
     )
@@ -504,6 +505,7 @@ def _main_codex_config(
         "TMPDIR",
         "LANG",
         "LC_ALL",
+        *sandbox.THREAD_LIMIT_ENV_KEYS,
         "DISTRIBUTED_AGENTS_*",
         "BIOKG_*",
         "HTTP_PROXY",

@@ -5,6 +5,10 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from ..corpus.models import CorpusRelease
 
 
 DATASET_CONTEXT_SCHEMA_VERSION = "distributed_agents-dataset-context-v1"
@@ -30,6 +34,18 @@ def canonical_dataset_manifest_path(skills_root: Path) -> Path:
     return canonical_dataset_context_path(skills_root).with_name(
         "DATASET_MANIFEST.json"
     )
+
+
+def selected_dataset_context_path(release: CorpusRelease, skills_root: Path) -> Path:
+    """Prefer the selected release's portrait, retaining legacy skill fallback.
+
+    A declared artifact must be usable: do not silently replace a missing or
+    invalid release portrait with a description of a different experiment.
+    """
+
+    if "dataset_context" in release.manifest.get("artifacts", {}):
+        return release.artifact("dataset_context")
+    return canonical_dataset_context_path(skills_root)
 
 
 def sha256_path(path: Path) -> str:

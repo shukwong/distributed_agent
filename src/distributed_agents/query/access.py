@@ -28,7 +28,9 @@ from .errors import CodexQueryError
 
 CORPUS_MCP_SERVER_PATH = Path(__file__).resolve().parents[1] / "corpus" / "mcp_server.py"
 CORPUS_MCP_PACKAGE_PATH = CORPUS_MCP_SERVER_PATH.parent / "mcp"
-CORPUS_MCP_PYTHON = Path("/usr/bin/python3")
+# Preserve the virtual-environment launcher rather than resolving its symlink
+# to a base interpreter without this runtime's dependencies.
+CORPUS_MCP_PYTHON = Path(sys.executable).absolute()
 
 _PATH_ENV_KEYS = {
     "DISTRIBUTED_AGENTS_FINDINGS_LEDGER",
@@ -149,6 +151,8 @@ def _codex_runtime_access_plan(
         *packaged_skill_roots,
         CORPUS_MCP_SERVER_PATH,
         CORPUS_MCP_PACKAGE_PATH,
+        Path(sys.prefix).absolute(),
+        Path(sys.base_prefix).absolute(),
         *skill_dirs,
     ]
     for key in ("DISTRIBUTED_AGENTS_GENE_STORE",):

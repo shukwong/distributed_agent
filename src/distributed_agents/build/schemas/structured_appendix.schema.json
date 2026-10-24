@@ -1,0 +1,438 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence",
+    "references",
+    "biological_findings",
+    "literature_comparisons",
+    "pathways",
+    "cell_type_specificity"
+  ],
+  "properties": {
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "evidence_id",
+          "evidence_slug",
+          "cell_type",
+          "genes",
+          "statistics",
+          "description"
+        ],
+        "properties": {
+          "evidence_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_slug": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cell_type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "genes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "statistics": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ref_id",
+          "ref_slug",
+          "source",
+          "source_type",
+          "citation",
+          "url",
+          "description"
+        ],
+        "properties": {
+          "ref_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ref_slug": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "citation": {
+            "type": "string",
+            "minLength": 1
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "biological_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "finding_id",
+          "finding_type",
+          "summary",
+          "why_it_matters",
+          "cell_types",
+          "genes",
+          "comparators",
+          "direction",
+          "confidence",
+          "evidence_ids",
+          "ref_ids",
+          "literature_status",
+          "main_caveats"
+        ],
+        "properties": {
+          "finding_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding_type": {
+            "enum": [
+              "cell_type_selectivity",
+              "cross_perturbation_contrast",
+              "convergent_module",
+              "buffered_response",
+              "homeostatic_compensation",
+              "literature_direction_mismatch",
+              "disease_mechanism_refinement",
+              "therapeutic_direction_warning",
+              "biomarker_candidate",
+              "negative_result",
+              "pathway_uncoupling",
+              "other"
+            ]
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "why_it_matters": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cell_types": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "genes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "comparators": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "direction": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "moderate",
+              "low",
+              "exploratory"
+            ]
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "ref_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "literature_status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "main_caveats": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "literature_comparisons": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "comparison_id",
+          "finding_id",
+          "comparison_scope",
+          "dataset_claim",
+          "literature_claim",
+          "relationship_to_literature",
+          "context_match",
+          "evidence_ids",
+          "ref_ids",
+          "confidence"
+        ],
+        "properties": {
+          "comparison_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "comparison_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "dataset_claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "literature_claim": {
+            "type": "string",
+            "minLength": 1
+          },
+          "relationship_to_literature": {
+            "type": "string",
+            "minLength": 1
+          },
+          "context_match": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "ref_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "moderate",
+              "low",
+              "exploratory"
+            ]
+          }
+        }
+      }
+    },
+    "pathways": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pathway",
+          "finding_ids",
+          "cell_type",
+          "genes",
+          "direction",
+          "evidence_ids"
+        ],
+        "properties": {
+          "pathway": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "finding_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "cell_type": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "genes": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "direction": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "minLength": 1
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "cell_type_specificity": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cell_type",
+          "finding_ids",
+          "summary",
+          "evidence_ids",
+          "ref_ids"
+        ],
+        "properties": {
+          "cell_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "summary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "ref_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:distributed-agents:reconstructed-appendix:v1",
+  "title": "Reconstructed six-ledger source report appendix"
+}

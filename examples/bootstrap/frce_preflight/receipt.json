@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-24",
+  "stage": "FRCE no-model preflight",
+  "source_base_commit": "4456985d5086d6ed20f71f34fb1a72f57b8b52e1",
+  "source_changes": "Python portability and explicit thread-cap preservation included in this receipt commit",
+  "python": "3.12.0",
+  "codex": "0.160.0",
+  "dependencies": {
+    "attrs": "26.1.0",
+    "build": "1.6.1",
+    "iniconfig": "2.3.1",
+    "jsonschema": "4.26.0",
+    "jsonschema-specifications": "2025.9.1",
+    "networkx": "3.7",
+    "packaging": "26.3",
+    "pluggy": "1.7.0",
+    "pyarrow": "26.0.0",
+    "Pygments": "2.21.0",
+    "pyproject_hooks": "1.3.3",
+    "pytest": "9.1.1",
+    "python-dotenv": "1.2.4",
+    "referencing": "0.37.0",
+    "rpds-py": "2026.9.1",
+    "setuptools": "84.2.1",
+    "typing_extensions": "4.16.0",
+    "wheel": "0.48.0"
+  },
+  "synthetic": true,
+  "model_calls": 0,
+  "verification": {
+    "pytest": {
+      "passed": 50,
+      "failed": 0
+    },
+    "pip_check": "passed",
+    "outer_python_probe": {
+      "status": "passed",
+      "selected_environment": "project venv",
+      "rows": 12,
+      "columns": [
+        "target",
+        "group",
+        "sample",
+        "readout",
+        "gene_target",
+        "dataset_kind",
+        "note"
+      ]
+    },
+    "reference_release": {
+      "id": "frce_reference_v1",
+      "ok": true,
+      "checks": 40,
+      "errors": [],
+      "warnings": [],
+      "report_targets": [
+        "SYNTH_ALPHA",
+        "SYNTH_BETA"
+      ]
+    },
+    "native_codex_sandbox": "not launched in this continuation",
+    "live_shell_generation_and_query": "not launched in this continuation",
+    "frce_milestone_complete": false
+  },
+  "hashes_sha256": {
+    "examples/bootstrap/synthetic_observations.csv": "7c48650399533f7eb0236c5dd2dd4cb7919b8b4d877e1b911946703f7634d360",
+    "run/input/synthetic_observations.parquet": "26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52",
+    "doctor-reference.json": "6aa0a75e9d9cd9e888251f58d5bb77b454ac62ffa7c3c5fbef65a8d6628cf842",
+    "pytest.log": "35e574d928758482bac66e2089be028b57e24f69e8afdcf1e85d4d8f084a0caa"
+  },
+  "reproduction": "FRCE_HANDOFF.md; clear PYTHONHOME/PYTHONPATH, use the project venv, and export the four documented thread caps as 1",
+  "local_artifacts": "Exact commands, environment, input and logs retained under ignored runs/frce-smoke.*/; local workspace handoff identifies the active run."
+}

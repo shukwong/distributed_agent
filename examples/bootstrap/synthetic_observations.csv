@@ -1,0 +1,13 @@
+target,group,sample,readout
+SYNTH_ALPHA,control,A1,9
+SYNTH_ALPHA,control,A2,10
+SYNTH_ALPHA,control,A3,11
+SYNTH_ALPHA,perturbed,A4,13
+SYNTH_ALPHA,perturbed,A5,14
+SYNTH_ALPHA,perturbed,A6,15
+SYNTH_BETA,control,B1,9
+SYNTH_BETA,control,B2,10
+SYNTH_BETA,control,B3,11
+SYNTH_BETA,perturbed,B4,9
+SYNTH_BETA,perturbed,B5,10
+SYNTH_BETA,perturbed,B6,11

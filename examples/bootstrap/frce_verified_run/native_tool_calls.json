@@ -1,0 +1,198 @@
+[
+  {
+    "id": "item_10",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "query_ledger",
+    "arguments": {
+      "ledger": "findings",
+      "genes": [
+        "SYNTH_ALPHA",
+        "SYNTH_BETA"
+      ],
+      "limit": 50
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"ledger\": \"findings\", \"operation\": \"corpus.ledger.query\", \"records\": [{\"cell_types\": \"\", \"comparators\": \"\", \"confidence\": \"high\", \"direction\": \"synthetic_higher_perturbed_mean\", \"doc_id\": \"SYNTH_ALPHA:F001\", \"evidence_ids\": \"E001\", \"finding_id\": \"F001\", \"finding_type\": \"other\", \"genes\": \"SYNTH_ALPHA\", \"literature_status\": \"not_applicable_synthetic_fixture\", \"main_caveats\": \"Software smoke test with invented values; generic readout meaning is unspecified; three constructed samples per group; no cell types, gene-expression signature, biological replicate definition, or inferential statistics.\", \"ref_ids\": \"\", \"summary\": \"Synthetic software-test finding: the constructed SYNTH_ALPHA perturbed-group mean is 14.0 versus a control-group mean of 10.0.\", \"target_gene\": \"SYNTH_ALPHA\", \"why_it_matters\": \"This verifies that the report pipeline can preserve a constructed positive arithmetic difference; it does not establish target engagement, a biological response, or statistical significance.\"}, {\"cell_types\": \"\", \"comparators\": \"SYNTH_BETA\", \"confidence\": \"high\", \"direction\": \"synthetic_divergence_in_group_mean_differences\", \"doc_id\": \"SYNTH_ALPHA:F002\", \"evidence_ids\": \"E001|E002\", \"finding_id\": \"F002\", \"finding_type\": \"cross_perturbation_contrast\", \"genes\": \"SYNTH_ALPHA|SYNTH_BETA\", \"literature_status\": \"not_applicable_synthetic_fixture\", \"main_caveats\": \"The target names are invented, no biological relationship is supplied, and the comparison is descriptive arithmetic without statistical inference.\", \"ref_ids\": \"\", \"summary\": \"Synthetic software-test finding: SYNTH_ALPHA has a constructed +4.0 perturbed-minus-control mean difference, whereas SYNTH_BETA has a constructed difference of 0.0.\", \"target_gene\": \"SYNTH_ALPHA\", \"why_it_matters\": \"This verifies that the pipeline can distinguish constructed positive and null patterns across fixture targets. It does not imply biological convergence, divergence, or relatedness.\"}, {\"cell_types\": \"\", \"comparators\": \"\", \"confidence\": \"high\", \"direction\": \"no_constructed_group_difference\", \"doc_id\": \"SYNTH_BETA:F001\", \"evidence_ids\": \"E001|E002|E003\", \"finding_id\": \"F001\", \"finding_type\": \"negative_result\", \"genes\": \"SYNTH_BETA\", \"literature_status\": \"\", \"main_caveats\": \"Synthetic arithmetic fixture only; readout meaning and units are unspecified, samples are not documented as biological replicates, target engagement is not separately measured, and no biological conclusion is supported.\", \"ref_ids\": \"\", \"summary\": \"Synthetic finding: the constructed SYNTH_BETA perturbed and control groups have identical scalar readout distributions and equal arithmetic means.\", \"target_gene\": \"SYNTH_BETA\", \"why_it_matters\": \"This software smoke-test result checks that the reporting pipeline preserves an exact null group contrast without fabricating statistical significance or biological interpretation.\"}], \"release_id\": \"frce_live_v1\", \"schema_version\": \"distributed_agents-corpus-mcp-v1\", \"truncation\": {\"emitted\": 3, \"exact_total\": null, \"max_output_bytes\": 32000, \"max_rows\": 50, \"truncated\": false}}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_5",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "describe",
+    "arguments": {
+      "query": "control_mean",
+      "limit": 10
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"data\": [], \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"operation\": \"corpus.describe\"}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_6",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "describe",
+    "arguments": {
+      "query": "perturbed_mean",
+      "limit": 10
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"data\": [], \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"operation\": \"corpus.describe\"}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_7",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "describe",
+    "arguments": {
+      "query": "difference",
+      "limit": 10
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"data\": [], \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"operation\": \"corpus.describe\"}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_8",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "calibrate",
+    "arguments": {
+      "topic": "summary",
+      "limit": 50
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"data\": {\"claim_layer\": {\"available\": false}, \"counts\": {\"evidence\": 5, \"findings\": 3, \"references\": 0, \"reports\": 2, \"targets\": 2}, \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"schema_version\": \"distributed_agents-bootstrap-calibration-v1\", \"semantics\": {\"confidence\": \"Source author confidence, not a calibrated probability.\", \"finding_type\": \"Source author category, not a statistical test.\", \"local_ids\": \"Finding, evidence and reference IDs are scoped to target_gene.\", \"target_gene\": \"Source report target; synthetic identifiers are not biological genes.\"}, \"sources\": [{\"builder\": {\"artifacts\": {\"biological_findings.jsonl\": {\"sha256\": \"a383894150e178a5e9135ec2aacd25d403cef2c994644e553996f447ee0eb291\"}, \"cell_type_specificity.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"events.jsonl\": {\"sha256\": \"22de07bf6b5e9927ec3caa5c12c4ebd6e64a157104a769477c34835f5c4be3e9\"}, \"evidence.jsonl\": {\"sha256\": \"7105e0f92c4b887de79aaa8a0c0c04b6366f5908b3c496cc8cbff7884469a77b\"}, \"last_message.txt\": {\"sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, \"literature_comparisons.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"pathways.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"references.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"report.md\": {\"sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, \"runner.log\": {\"sha256\": \"9242b7c54d07fada0755c440098e01a02908a24610ca6329b3c9cdf896eb056b\"}, \"structured_appendix.json\": {\"sha256\": \"0980049fade1094dd73a5096287244d47d515cf24cbd8bee3190d4b7a9832a80\"}, \"task.md\": {\"sha256\": \"302f2cf0ce94e1c4d103066ace39469313868474cbd0aafea20626d5b2802306\"}, \"validation.json\": {\"sha256\": \"2fc7785277e79c111c0b088938edbea69006c04262f13a6a48f2348f44b548ba\"}}, \"backend\": \"codex\", \"builder\": \"reconstructed-v1\", \"contracts\": {\"prompts/base_scientist_contract.md\": {\"id\": \"reconstructed-v1/prompts/base_scientist_contract.md\", \"sha256\": \"ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03\"}, \"prompts/findings_report.md\": {\"id\": \"reconstructed-v1/prompts/findings_report.md\", \"sha256\": \"7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128\"}, \"schemas/structured_appendix.schema.json\": {\"id\": \"reconstructed-v1/schemas/structured_appendix.schema.json\", \"sha256\": \"55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac\"}}, \"finished_at\": \"2026-10-24T16:54:09.175629+00:00\", \"gene_target\": \"SYNTH_ALPHA\", \"inline_small_input\": false, \"inputs\": {\"dataset\": {\"path\": \"<RUN_DIR>/input/synthetic_observations.parquet\", \"sha256\": \"26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52\"}}, \"max_turns\": null, \"model\": \"gpt-5.6-sol\", \"reasoning_effort\": \"low\", \"started_at\": \"2026-10-24T16:53:05.805685+00:00\", \"status\": \"completed\", \"timeout_seconds\": 240.0, \"upstream_implementation\": false, \"usage\": {\"cache_read_input_tokens\": 31616, \"input_tokens\": 50379, \"output_tokens\": 2688, \"reasoning_output_tokens\": 188, \"requests\": 1, \"total_tokens\": 53067}, \"validation_scope\": \"schema and internal references; scientific claims not verified\"}, \"gene_target\": \"SYNTH_ALPHA\", \"report_sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, {\"builder\": {\"artifacts\": {\"biological_findings.jsonl\": {\"sha256\": \"b64c0442ce7e15b45aa84750114885c207f398bf8f76cb03350b433688bf8878\"}, \"cell_type_specificity.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"events.jsonl\": {\"sha256\": \"e7043628ba07d6cf3ba52fe413818819e83a0ffb06269dfc11659a86c616ab4e\"}, \"evidence.jsonl\": {\"sha256\": \"02a7798695b041f2cd2e7bae6f216469ed0146207abd56db0f1c49fc9c0d6b45\"}, \"last_message.txt\": {\"sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}, \"literature_comparisons.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"pathways.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"references.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"report.md\": {\"sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}, \"runner.log\": {\"sha256\": \"33190461052071bc4984c2029f96f585ecbac4589001d882d05fba778693c2a0\"}, \"structured_appendix.json\": {\"sha256\": \"43d0a1e10c34f0accaf218d33d8700890fa5d715b602ddd5a6eb9cc25a3c3eb0\"}, \"task.md\": {\"sha256\": \"f45fe5c3520de5fff2bbbb1b6ecf67454d1440903f6a4939cfde4b5a6d9f1143\"}, \"validation.json\": {\"sha256\": \"c09edd3bb0d6529277396ea43b2772b43f5c04994a071b53684ba5b24fd4e9be\"}}, \"backend\": \"codex\", \"builder\": \"reconstructed-v1\", \"contracts\": {\"prompts/base_scientist_contract.md\": {\"id\": \"reconstructed-v1/prompts/base_scientist_contract.md\", \"sha256\": \"ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03\"}, \"prompts/findings_report.md\": {\"id\": \"reconstructed-v1/prompts/findings_report.md\", \"sha256\": \"7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128\"}, \"schemas/structured_appendix.schema.json\": {\"id\": \"reconstructed-v1/schemas/structured_appendix.schema.json\", \"sha256\": \"55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac\"}}, \"finished_at\": \"2026-10-24T16:55:05.779537+00:00\", \"gene_target\": \"SYNTH_BETA\", \"inline_small_input\": false, \"inputs\": {\"dataset\": {\"path\": \"<RUN_DIR>/input/synthetic_observations.parquet\", \"sha256\": \"26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52\"}}, \"max_turns\": null, \"model\": \"gpt-5.6-sol\", \"reasoning_effort\": \"low\", \"started_at\": \"2026-10-24T16:54:09.694836+00:00\", \"status\": \"completed\", \"timeout_seconds\": 240.0, \"upstream_implementation\": false, \"usage\": {\"cache_read_input_tokens\": 31616, \"input_tokens\": 50742, \"output_tokens\": 2451, \"reasoning_output_tokens\": 222, \"requests\": 1, \"total_tokens\": 53193}, \"validation_scope\": \"schema and internal references; scientific claims not verified\"}, \"gene_target\": \"SYNTH_BETA\", \"report_sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}], \"synthetic\": true}, \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"operation\": \"corpus.calibrate\"}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_9",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "calibrate",
+    "arguments": {
+      "topic": "sources",
+      "limit": 50
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"data\": [{\"builder\": {\"artifacts\": {\"biological_findings.jsonl\": {\"sha256\": \"a383894150e178a5e9135ec2aacd25d403cef2c994644e553996f447ee0eb291\"}, \"cell_type_specificity.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"events.jsonl\": {\"sha256\": \"22de07bf6b5e9927ec3caa5c12c4ebd6e64a157104a769477c34835f5c4be3e9\"}, \"evidence.jsonl\": {\"sha256\": \"7105e0f92c4b887de79aaa8a0c0c04b6366f5908b3c496cc8cbff7884469a77b\"}, \"last_message.txt\": {\"sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, \"literature_comparisons.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"pathways.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"references.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"report.md\": {\"sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, \"runner.log\": {\"sha256\": \"9242b7c54d07fada0755c440098e01a02908a24610ca6329b3c9cdf896eb056b\"}, \"structured_appendix.json\": {\"sha256\": \"0980049fade1094dd73a5096287244d47d515cf24cbd8bee3190d4b7a9832a80\"}, \"task.md\": {\"sha256\": \"302f2cf0ce94e1c4d103066ace39469313868474cbd0aafea20626d5b2802306\"}, \"validation.json\": {\"sha256\": \"2fc7785277e79c111c0b088938edbea69006c04262f13a6a48f2348f44b548ba\"}}, \"backend\": \"codex\", \"builder\": \"reconstructed-v1\", \"contracts\": {\"prompts/base_scientist_contract.md\": {\"id\": \"reconstructed-v1/prompts/base_scientist_contract.md\", \"sha256\": \"ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03\"}, \"prompts/findings_report.md\": {\"id\": \"reconstructed-v1/prompts/findings_report.md\", \"sha256\": \"7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128\"}, \"schemas/structured_appendix.schema.json\": {\"id\": \"reconstructed-v1/schemas/structured_appendix.schema.json\", \"sha256\": \"55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac\"}}, \"finished_at\": \"2026-10-24T16:54:09.175629+00:00\", \"gene_target\": \"SYNTH_ALPHA\", \"inline_small_input\": false, \"inputs\": {\"dataset\": {\"path\": \"<RUN_DIR>/input/synthetic_observations.parquet\", \"sha256\": \"26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52\"}}, \"max_turns\": null, \"model\": \"gpt-5.6-sol\", \"reasoning_effort\": \"low\", \"started_at\": \"2026-10-24T16:53:05.805685+00:00\", \"status\": \"completed\", \"timeout_seconds\": 240.0, \"upstream_implementation\": false, \"usage\": {\"cache_read_input_tokens\": 31616, \"input_tokens\": 50379, \"output_tokens\": 2688, \"reasoning_output_tokens\": 188, \"requests\": 1, \"total_tokens\": 53067}, \"validation_scope\": \"schema and internal references; scientific claims not verified\"}, \"gene_target\": \"SYNTH_ALPHA\", \"report_sha256\": \"fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae\"}, {\"builder\": {\"artifacts\": {\"biological_findings.jsonl\": {\"sha256\": \"b64c0442ce7e15b45aa84750114885c207f398bf8f76cb03350b433688bf8878\"}, \"cell_type_specificity.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"events.jsonl\": {\"sha256\": \"e7043628ba07d6cf3ba52fe413818819e83a0ffb06269dfc11659a86c616ab4e\"}, \"evidence.jsonl\": {\"sha256\": \"02a7798695b041f2cd2e7bae6f216469ed0146207abd56db0f1c49fc9c0d6b45\"}, \"last_message.txt\": {\"sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}, \"literature_comparisons.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"pathways.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"references.jsonl\": {\"sha256\": \"e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855\"}, \"report.md\": {\"sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}, \"runner.log\": {\"sha256\": \"33190461052071bc4984c2029f96f585ecbac4589001d882d05fba778693c2a0\"}, \"structured_appendix.json\": {\"sha256\": \"43d0a1e10c34f0accaf218d33d8700890fa5d715b602ddd5a6eb9cc25a3c3eb0\"}, \"task.md\": {\"sha256\": \"f45fe5c3520de5fff2bbbb1b6ecf67454d1440903f6a4939cfde4b5a6d9f1143\"}, \"validation.json\": {\"sha256\": \"c09edd3bb0d6529277396ea43b2772b43f5c04994a071b53684ba5b24fd4e9be\"}}, \"backend\": \"codex\", \"builder\": \"reconstructed-v1\", \"contracts\": {\"prompts/base_scientist_contract.md\": {\"id\": \"reconstructed-v1/prompts/base_scientist_contract.md\", \"sha256\": \"ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03\"}, \"prompts/findings_report.md\": {\"id\": \"reconstructed-v1/prompts/findings_report.md\", \"sha256\": \"7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128\"}, \"schemas/structured_appendix.schema.json\": {\"id\": \"reconstructed-v1/schemas/structured_appendix.schema.json\", \"sha256\": \"55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac\"}}, \"finished_at\": \"2026-10-24T16:55:05.779537+00:00\", \"gene_target\": \"SYNTH_BETA\", \"inline_small_input\": false, \"inputs\": {\"dataset\": {\"path\": \"<RUN_DIR>/input/synthetic_observations.parquet\", \"sha256\": \"26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52\"}}, \"max_turns\": null, \"model\": \"gpt-5.6-sol\", \"reasoning_effort\": \"low\", \"started_at\": \"2026-10-24T16:54:09.694836+00:00\", \"status\": \"completed\", \"timeout_seconds\": 240.0, \"upstream_implementation\": false, \"usage\": {\"cache_read_input_tokens\": 31616, \"input_tokens\": 50742, \"output_tokens\": 2451, \"reasoning_output_tokens\": 222, \"requests\": 1, \"total_tokens\": 53193}, \"validation_scope\": \"schema and internal references; scientific claims not verified\"}, \"gene_target\": \"SYNTH_BETA\", \"report_sha256\": \"2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e\"}], \"notice\": \"Synthetic engineering fixture only; no biological or clinical conclusions.\", \"operation\": \"corpus.calibrate\"}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_14",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "resolve_evidence",
+    "arguments": {
+      "gene": "SYNTH_BETA",
+      "finding": "F001",
+      "mode": "both"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"evidence\": [{\"cell_type\": \"\", \"description\": \"Synthetic control-group arithmetic for the SYNTH_BETA software smoke-test fixture; not a biological observation.\", \"evidence_id\": \"E001\", \"evidence_slug\": \"synthetic_beta_control_values\", \"genes\": \"SYNTH_BETA\", \"statistics\": \"3 labeled samples (B1-B3); readouts 9.0, 10.0, 11.0; arithmetic mean 10.0; minimum 9.0; maximum 11.0.\", \"target_gene\": \"SYNTH_BETA\"}, {\"cell_type\": \"\", \"description\": \"Synthetic perturbed-group arithmetic for SYNTH_BETA. Its values exactly match the synthetic control values; no statistical or biological inference is implied.\", \"evidence_id\": \"E002\", \"evidence_slug\": \"synthetic_beta_perturbed_values\", \"genes\": \"SYNTH_BETA\", \"statistics\": \"3 labeled samples (B4-B6); readouts 9.0, 10.0, 11.0; arithmetic mean 10.0; minimum 9.0; maximum 11.0; perturbed-minus-control mean difference 0.0.\", \"target_gene\": \"SYNTH_BETA\"}, {\"cell_type\": \"\", \"description\": \"Input metadata identifies every SYNTH_BETA row as an invented arithmetic fixture and directs computation of group means only, without significance testing or mechanistic inference.\", \"evidence_id\": \"E003\", \"evidence_slug\": \"synthetic_fixture_metadata\", \"genes\": \"SYNTH_BETA\", \"statistics\": \"6 of 6 SYNTH_BETA rows have dataset_kind=synthetic_smoke_fixture and the same explicit non-biological fixture note.\", \"target_gene\": \"SYNTH_BETA\"}], \"operation\": \"corpus.evidence.resolve\", \"references\": [], \"release_id\": \"frce_live_v1\", \"schema_version\": \"distributed_agents-corpus-mcp-v1\", \"truncation\": {\"evidence_emitted\": 3, \"evidence_total\": 3, \"max_output_bytes\": 32000, \"references_emitted\": 0, \"references_total\": 0, \"truncated\": false}}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_12",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "resolve_evidence",
+    "arguments": {
+      "gene": "SYNTH_ALPHA",
+      "finding": "F001",
+      "mode": "both"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"evidence\": [{\"cell_type\": \"\", \"description\": \"Synthetic software-test observation: the constructed SYNTH_ALPHA perturbed group has a higher mean generic readout than its constructed control group. This is not a biological measurement or evidence of target engagement.\", \"evidence_id\": \"E001\", \"evidence_slug\": \"synthetic_alpha_group_means\", \"genes\": \"SYNTH_ALPHA\", \"statistics\": \"Synthetic values only: control n=3, values=[9.0,10.0,11.0], mean=10.0; perturbed n=3, values=[13.0,14.0,15.0], mean=14.0; arithmetic mean difference=+4.0 readout units; no inferential statistics.\", \"target_gene\": \"SYNTH_ALPHA\"}], \"operation\": \"corpus.evidence.resolve\", \"references\": [], \"release_id\": \"frce_live_v1\", \"schema_version\": \"distributed_agents-corpus-mcp-v1\", \"truncation\": {\"evidence_emitted\": 1, \"evidence_total\": 1, \"max_output_bytes\": 32000, \"references_emitted\": 0, \"references_total\": 0, \"truncated\": false}}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  },
+  {
+    "id": "item_13",
+    "type": "mcp_tool_call",
+    "server": "distributed_agents_corpus",
+    "tool": "resolve_evidence",
+    "arguments": {
+      "gene": "SYNTH_ALPHA",
+      "finding": "F002",
+      "mode": "both"
+    },
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"evidence\": [{\"cell_type\": \"\", \"description\": \"Synthetic software-test observation: the constructed SYNTH_ALPHA perturbed group has a higher mean generic readout than its constructed control group. This is not a biological measurement or evidence of target engagement.\", \"evidence_id\": \"E001\", \"evidence_slug\": \"synthetic_alpha_group_means\", \"genes\": \"SYNTH_ALPHA\", \"statistics\": \"Synthetic values only: control n=3, values=[9.0,10.0,11.0], mean=10.0; perturbed n=3, values=[13.0,14.0,15.0], mean=14.0; arithmetic mean difference=+4.0 readout units; no inferential statistics.\", \"target_gene\": \"SYNTH_ALPHA\"}, {\"cell_type\": \"\", \"description\": \"Synthetic software-test observation: the constructed SYNTH_BETA control and perturbed groups have identical mean generic readouts. This comparator has no established biological relationship to SYNTH_ALPHA.\", \"evidence_id\": \"E002\", \"evidence_slug\": \"synthetic_beta_group_means\", \"genes\": \"SYNTH_BETA\", \"statistics\": \"Synthetic values only: control n=3, values=[9.0,10.0,11.0], mean=10.0; perturbed n=3, values=[9.0,10.0,11.0], mean=10.0; arithmetic mean difference=0.0 readout units; no inferential statistics.\", \"target_gene\": \"SYNTH_ALPHA\"}], \"operation\": \"corpus.evidence.resolve\", \"references\": [], \"release_id\": \"frce_live_v1\", \"schema_version\": \"distributed_agents-corpus-mcp-v1\", \"truncation\": {\"evidence_emitted\": 2, \"evidence_total\": 2, \"max_output_bytes\": 32000, \"references_emitted\": 0, \"references_total\": 0, \"truncated\": false}}"
+        }
+      ],
+      "structured_content": null
+    },
+    "error": null,
+    "status": "completed"
+  }
+]

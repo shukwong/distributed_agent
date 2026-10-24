@@ -1,0 +1,166 @@
+{
+  "verified_date": "2026-10-24",
+  "verification_scope": "Compact study/profile/sample-list/gene-panel/clinical-schema metadata and DataHub LFS pointers only; no mutation outcomes inspected.",
+  "snapshot_frozen": false,
+  "datahub_commit": null,
+  "full_payloads_downloaded": false,
+  "studies": [
+    {
+      "study_id": "luad_tcga_pan_can_atlas_2018",
+      "study_url": "https://www.cbioportal.org/api/studies/luad_tcga_pan_can_atlas_2018",
+      "profiles_url": "https://www.cbioportal.org/api/studies/luad_tcga_pan_can_atlas_2018/molecular-profiles",
+      "clinical_attributes_url": "https://www.cbioportal.org/api/studies/luad_tcga_pan_can_atlas_2018/clinical-attributes",
+      "datahub_url": "https://github.com/cBioPortal/datahub/tree/master/public/luad_tcga_pan_can_atlas_2018",
+      "api_import_date": "2026-06-04",
+      "samples": 566,
+      "sequenced_samples": 566,
+      "profiled_true": 566,
+      "reference": "hg19",
+      "mutation_profile": "luad_tcga_pan_can_atlas_2018_mutations",
+      "profile_type": "MUTATION_EXTENDED",
+      "datatype": "MAF",
+      "patient_level_profile": false,
+      "clinical_fields_verified": [
+        "AGE",
+        "SEX",
+        "AJCC_PATHOLOGIC_TUMOR_STAGE",
+        "SAMPLE_TYPE",
+        "MUTATION_COUNT",
+        "TMB_NONSYNONYMOUS"
+      ],
+      "clinical_completeness_verified": false,
+      "patient_mapping_audit_complete": false,
+      "files": {
+        "data_mutations.txt": {
+          "advertised_bytes": 232136490,
+          "advertised_lfs_sha256": "a08847f9536886be6de4399caabf87202afacf19ee79f0500284020d58827079",
+          "download_hash_verified": false
+        },
+        "data_clinical_patient.txt": {
+          "advertised_bytes": 158342,
+          "download_hash_verified": false
+        },
+        "data_clinical_sample.txt": {
+          "advertised_bytes": 111469,
+          "download_hash_verified": false
+        },
+        "data_gene_panel_matrix.txt": {
+          "advertised_bytes": 15784,
+          "download_hash_verified": false
+        }
+      }
+    },
+    {
+      "study_id": "luad_mskcc_2020",
+      "study_url": "https://www.cbioportal.org/api/studies/luad_mskcc_2020",
+      "profiles_url": "https://www.cbioportal.org/api/studies/luad_mskcc_2020/molecular-profiles",
+      "clinical_attributes_url": "https://www.cbioportal.org/api/studies/luad_mskcc_2020/clinical-attributes",
+      "datahub_url": "https://github.com/cBioPortal/datahub/tree/master/public/luad_mskcc_2020",
+      "api_import_date": "2026-01-07",
+      "samples": 604,
+      "sequenced_samples": 604,
+      "profiled_true": 604,
+      "reference": "hg19",
+      "mutation_profile": "luad_mskcc_2020_mutations",
+      "profile_type": "MUTATION_EXTENDED",
+      "datatype": "MAF",
+      "patient_level_profile": false,
+      "clinical_fields_verified": [
+        "AGE_AT_SURGERY",
+        "SEX",
+        "SMOKING_HISTORY",
+        "SMOKING_PACK_YEARS",
+        "PATHOLOGIC_STAGE",
+        "PREDOMINANT_HISTOLOGIC_SUBTYPE",
+        "SUBTYPE_GROUP",
+        "MUTATION_COUNT",
+        "TMB",
+        "TMB_NONSYNONYMOUS"
+      ],
+      "clinical_completeness_verified": false,
+      "patient_mapping_audit_complete": false,
+      "files": {
+        "data_mutations.txt": {
+          "advertised_bytes": 1604943,
+          "advertised_lfs_sha256": "222f1c06e8587b3b8b40696b16594614ce7257fc94ce3e111a66d30dee6fbdec",
+          "download_hash_verified": false
+        },
+        "data_clinical_patient.txt": {
+          "advertised_bytes": 62270,
+          "download_hash_verified": false
+        },
+        "data_clinical_sample.txt": {
+          "advertised_bytes": 88509,
+          "download_hash_verified": false
+        },
+        "data_gene_panel_matrix.txt": {
+          "advertised_bytes": 29035,
+          "download_hash_verified": false
+        }
+      }
+    }
+  ],
+  "gene_panel_membership": {
+    "IMPACT341": {
+      "samples": 8,
+      "all_six_genes_present": true,
+      "url": "https://www.cbioportal.org/api/gene-panels/IMPACT341"
+    },
+    "IMPACT410": {
+      "samples": 190,
+      "all_six_genes_present": true,
+      "url": "https://www.cbioportal.org/api/gene-panels/IMPACT410"
+    },
+    "IMPACT468": {
+      "samples": 406,
+      "all_six_genes_present": true,
+      "returned_gene_records": 469,
+      "url": "https://www.cbioportal.org/api/gene-panels/IMPACT468"
+    }
+  },
+  "genes_entrez": {
+    "BRAF": 673,
+    "EGFR": 1956,
+    "KEAP1": 9817,
+    "KRAS": 3845,
+    "STK11": 6794,
+    "TP53": 7157
+  },
+  "advertised_selected_file_bytes": 234206842,
+  "limitations": [
+    "TCGA has no smoking field in current clinical-attributes schema.",
+    "TCGA genePanelId absent; WES plus profiled flag provides nominal coverage only.",
+    "Panel membership does not prove base-level callability.",
+    "Unique patient-prefix patterns in case lists require verification against explicit patient metadata.",
+    "Different identifier namespaces do not establish cross-cohort person-level independence.",
+    "Final clinical eligibility and genotype sample sizes are unknown.",
+    "Advertised LFS hashes are metadata, not validation of downloaded payloads."
+  ],
+  "references": [
+    {
+      "title": "MSK LUAD cohort paper",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32791233/",
+      "doi": "10.1016/j.jtho.2020.08.005"
+    },
+    {
+      "title": "cBioPortal file formats and panels",
+      "url": "https://docs.cbioportal.org/file-formats/"
+    },
+    {
+      "title": "cBioPortal FAQ and overlap guidance",
+      "url": "https://docs.cbioportal.org/user-guide/faq/"
+    },
+    {
+      "title": "Heterogeneous alteration rates and co-occurrence",
+      "url": "https://doi.org/10.1186/s13059-016-1114-x"
+    },
+    {
+      "title": "Firth logistic implementation documentation",
+      "url": "https://georgheinze.r-universe.dev/logistf"
+    },
+    {
+      "title": "Current DepMap integration caveat",
+      "url": "https://forum.depmap.org/t/organoid-dependency-data/4671/7"
+    }
+  ]
+}

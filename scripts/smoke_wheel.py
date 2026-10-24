@@ -28,7 +28,7 @@ def main() -> int:
         tmp_path = Path(tmp)
         venv = tmp_path / "venv"
         _run(
-            [sys.executable, "-m", "venv", "--system-site-packages", str(venv)],
+            [sys.executable, "-m", "venv", str(venv)],
             cwd=tmp_path,
             env=os.environ.copy(),
         )
@@ -41,7 +41,7 @@ def main() -> int:
                 "-m",
                 "pip",
                 "install",
-                "--no-deps",
+                "--disable-pip-version-check",
                 "--force-reinstall",
                 str(wheels[0]),
             ],
