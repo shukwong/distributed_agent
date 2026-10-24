@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "counts": {
+    "evidence": 3,
+    "references": 0,
+    "biological_findings": 1,
+    "literature_comparisons": 0,
+    "pathways": 0,
+    "cell_type_specificity": 0
+  },
+  "scope": "schema and internal references; scientific claims not verified"
+}

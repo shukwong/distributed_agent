@@ -4,10 +4,11 @@ Last updated: 2026-10-24 EDT
 
 ## Goal
 
-First milestone is complete: fork DistributedAgents, generate a tiny new
-synthetic corpus, and query it with native evidence tools. Next: verify normal
-model shell input access and the complete tiny workflow on FRCE. A biological
-pilot and parallel scaling have not started.
+The FRCE shell-enabled synthetic milestone is complete: generate two reports
+from Parquet through normal model shells, validate and package their evidence,
+and query it through native MCP tools. Next: select one public cancer/mutation
+or aging pilot and define its protocol before launch. A biological pilot and
+parallel scaling have not started.
 
 ## Current State
 
@@ -15,15 +16,16 @@ pilot and parallel scaling have not started.
 - Branch: `research/bootstrap-corpus`; the default `main` still follows upstream.
 - Draft PR: https://github.com/shukwong/distributed_agent/pull/1
 - Upstream baseline: `c20445d929f5aedce1d539ef6fbd8843b8c06e25`.
-- Milestone implementation commit: `8ed5d03`; subsequent commits document the
-  diagnosis and continuation. Use the latest branch tip and record its SHA.
+- Original implementation: `8ed5d03`. Verified FRCE source:
+  `07a6bfcbbb29009a9db13c72474be51bdc4270f7`; later commits preserve receipts and
+  documentation. Record the exact source SHA for any fresh reproduction.
 - Reconstructed the missing report builder, added validated ledger packaging,
   release-owned dataset context, optional graph handling and interpreter fixes.
-- Live synthetic generation and native MCP query succeeded. Committed evidence:
-  `examples/bootstrap/verified_run/`. No research process remains running in
-  the originating task.
-- Start FRCE continuation with `FRCE_HANDOFF.md`. It contains materials, sparse
-  checkout, setup, commands, known runtime issues and acceptance criteria.
+- FRCE live synthetic generation, release doctor and direct native MCP query
+  succeeded. Public evidence: `examples/bootstrap/frce_verified_run/`.
+  The earlier Biowulf inline example remains in `examples/bootstrap/verified_run/`.
+- `FRCE_HANDOFF.md` contains the verified reproduction runbook and acceptance
+  criteria. The smoke test is complete; do not repeat it merely to resume.
 - `examples/bootstrap/probe_outer_python.py` checks the actual outer enclosure's
   Python and Parquet access without launching a model or staging credentials.
 - FRCE continuation repaired venv selection, external Python mounts, explicit
@@ -31,16 +33,20 @@ pilot and parallel scaling have not started.
   outer enclosure reads the 12-row fixture successfully. Two deterministic
   reference builds package and pass the corpus doctor. Receipt:
   `examples/bootstrap/frce_preflight/receipt.json`.
-- Native sandbox probe and two live model builds/query have not launched in this
-  continuation; the shell-enabled milestone remains incomplete.
+- The native sandbox probe and both live builds ran through authorized host
+  execution with framework and native sandboxes enabled. Each build successfully
+  read the declared Parquet in shell event `item_5`; neither used inline input.
+- Live reports contain three supported findings and five evidence rows in total.
+  The direct query retrieved both targets and resolved correctly scoped evidence.
+  All results are synthetic software checks, with no biological conclusion.
 
 ## Host Diagnosis and FRCE Follow-up
 
 - The original Biowulf execution environment disables new user namespaces.
   Namespace creation failures were not a disk-space shortage or a demonstrated
   leak. No host settings were changed and no support message was sent.
-- Successful live generation used `--inline-small-input`, which supplies the
-  complete bounded input and disables model shell/web tools. Native sandboxing
+- Historical Biowulf live generation used `--inline-small-input`, supplying the
+  complete bounded input and disabling model shell/web tools. Native sandboxing
   remained configured. This does not prove ordinary shell execution works.
 - The user reported namespace and bubblewrap checks passing on two FRCE compute
   nodes. An initial Codex test ran through another Codex agent's shell tool and
@@ -50,11 +56,10 @@ pilot and parallel scaling have not started.
   masked within its shell sandbox. Nested execution is the likely explanation;
   no host permission repair was established as necessary. `FRCE_HANDOFF.md`
   links the source and gives the corrected `codex sandbox -- COMMAND` syntax.
-- The user subsequently confirmed the corrected direct-terminal sandbox probe
-  worked. This is user-reported, not independently rerun by the originating task.
-- Complete shell-enabled DistributedAgents execution on FRCE is still unverified.
-  Prepare launches with Codex, but execute this smoke from an ordinary allocation
-  terminal or an authorized host launch that preserves the child sandbox.
+- The corrected native probe was independently rerun on FRCE and exited 0;
+  shell-enabled builds and query then completed. Future runs should use an
+  ordinary allocation terminal or authorized host execution that preserves
+  the child sandbox. No host permission or namespace-setting changes were needed.
 
 ## Durable Outputs
 
@@ -70,42 +75,42 @@ pilot and parallel scaling have not started.
   local run receipts, not public GitHub commits. Recreate the environment on FRCE.
 - FRCE raw diagnostics, exact launch scripts and environment receipt are under
   ignored `runs/frce-smoke.*/`; the local workspace `status.md` identifies the
-  active run and allocation. Inspect it before creating a new run.
+  completed run, allocation and next action. Inspect it before creating a new run.
+- Public commands, versions, usage, input/output hashes, diagnostics and compact
+  report/query artifacts are recorded in `examples/bootstrap/frce_verified_run/`.
+  Keep full raw logs and machine-specific execution details in local receipts.
 
 ## Verification
 
 - FRCE: 50 regression tests passed, `pip check` passed, outer Python/Parquet probe
   passed, and the deterministic two-target release doctor passed with zero errors.
+- Native sandbox probe exited 0. Two sequential shell-enabled builds validated:
+  ALPHA has control/perturbed means 10/14 and difference +4; BETA has means 10/10
+  and difference 0. Their successful shell reads were independently inspected.
+- Live release doctor: 33 checks, zero errors or warnings. Direct query: exit 0,
+  nine successful native MCP calls, correct target-scoped citations and arithmetic.
+  The query completed with the known nonfatal unknown-enterprise-feature warning.
+- Both builds recovered from missing optional pandas during display by reading
+  Arrow records directly. The native probe's stale `arg0` cleanup warning was
+  nonfatal. See the live receipt for exact diagnostics and per-run token usage.
 - Historical Biowulf wheel build and isolated install/CLI smoke passed. They
   were not repeated for these runtime-only changes.
-- Live release doctor: 37 checks, zero errors.
-- Live build: two evidence rows and two findings; differences +4 and 0 match the
-  synthetic input. Codex 0.160.0, model `gpt-5.6-sol`, 15,668 total tokens.
-- Live query: seven successful native MCP calls, correct scoped citations and
-  arithmetic. 65,635 total tokens, including 48,640 cached input.
-  `completed_with_warnings` reflected an unknown enterprise feature requirement;
-  no evidence-tool failure occurred.
 - An earlier shell-based generation failed to read input and returned an honest
-  empty report; it was excluded from the successful release.
-- FRCE handoff: eight Bash blocks passed syntax checks, diagnostic helper passed
-  compile/help checks, all four reference artifact hashes match the receipt.
-  Diagnostic execution now passes on FRCE; the live FRCE workflow awaits launch.
+  empty report; it was excluded from successful releases. Historical inline
+  verification remains documented in `examples/bootstrap/verified_run/receipt.json`.
 
 ## Next Actions
 
 1. Read `FRCE_HANDOFF.md`, the local workspace handoff, and the existing run
    outputs; verify the current allocation before resuming.
-2. Run the native sandbox probe from an ordinary allocation terminal or approved
-   host execution. The outer Python probe and deterministic reference are done;
-   do not recreate their output directories. Preserve both sandboxes.
-3. Complete two shell-enabled synthetic builds, package the release, run its
-   doctor and a direct native-evidence query. Inspect actual input-read calls and
-   numeric findings; schema success with empty ledgers is not milestone success.
-4. Preserve reproducible receipts, update the draft PR and status, and keep
-   internal host details in ignored local artifacts.
-5. Select one public cancer/mutation or aging pilot. Adapt the Perturb-seq-specific
-   report contract and define null checks, independent replication and a bounded
-   parallel pilot before considering thousands of tasks.
+2. Resolve the pending pilot choice: public cancer/mutation data or aging data.
+   No dataset, biological research question or pilot launch has been selected.
+3. Before launch, define the independent analysis unit, covariates, null controls,
+   multiple-testing procedure, replication/holdout and assay-specific report
+   contract. The current prompt assumes Perturb-seq and is not a general assay contract.
+4. Set a bounded compute/model budget and restart strategy for the selected pilot.
+   Only then evaluate small-scale parallel execution, failure handling and cost;
+   the synthetic workflow does not establish parallel-scale readiness.
 
 ## Lessons Learned
 
@@ -124,3 +129,7 @@ pilot and parallel scaling have not started.
   outer enclosure, not only in the module-loaded host shell.
 - Environment scrubbing must retain explicitly chosen numerical thread caps;
   parent exports alone do not bound the model shell if filters drop them.
+- The `analysis` extra supplies Arrow, not pandas. For small Parquet inspections,
+  `read_table(...).to_pylist()` avoids an unnecessary optional display dependency.
+- Validate actual successful input-read and MCP events, numeric evidence and
+  target-scoped citations; schema or completed-turn status alone is insufficient.

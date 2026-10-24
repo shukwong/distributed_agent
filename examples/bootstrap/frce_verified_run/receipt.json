@@ -1,0 +1,295 @@
+{
+  "kind": "Synthetic engineering smoke test; not biological research",
+  "verified_at": "2026-10-24T17:03:19.073953+00:00",
+  "source_revision": {
+    "commit": "07a6bfcbbb29009a9db13c72474be51bdc4270f7",
+    "dirty": false,
+    "dirty_tracked_files": 0
+  },
+  "python": "3.12.0",
+  "codex_version": "0.160.0",
+  "model": "gpt-5.6-sol",
+  "input_sha256": "26fdc91af1b7c79f3cf42de451a4043267c57405a621057dc83fd26bfcd7df52",
+  "source_csv_sha256": "7c48650399533f7eb0236c5dd2dd4cb7919b8b4d877e1b911946703f7634d360",
+  "native_sandbox_probe": {
+    "exit_code": 0,
+    "command": "timeout -k 2s 30s env -u CODEX_REMOTE_PAYLOAD \"$FRCE_CODEX_BIN\" sandbox -- /usr/bin/true"
+  },
+  "outer_python_probe": {
+    "passed": true,
+    "rows": 12,
+    "selected_environment": "project venv"
+  },
+  "sandbox": {
+    "mode": "workspace-write",
+    "bwrap": true,
+    "owner": "distributed_agents"
+  },
+  "builds": {
+    "SYNTH_ALPHA": {
+      "status": "completed",
+      "inline_small_input": false,
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low",
+      "timeout_seconds": 240.0,
+      "started_at": "2026-10-24T16:53:05.805685+00:00",
+      "finished_at": "2026-10-24T16:54:09.175629+00:00",
+      "contracts": {
+        "prompts/base_scientist_contract.md": {
+          "id": "reconstructed-v1/prompts/base_scientist_contract.md",
+          "sha256": "ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03"
+        },
+        "prompts/findings_report.md": {
+          "id": "reconstructed-v1/prompts/findings_report.md",
+          "sha256": "7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128"
+        },
+        "schemas/structured_appendix.schema.json": {
+          "id": "reconstructed-v1/schemas/structured_appendix.schema.json",
+          "sha256": "55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac"
+        }
+      },
+      "usage": {
+        "total_tokens": 53067,
+        "requests": 1,
+        "input_tokens": 50379,
+        "output_tokens": 2688,
+        "cache_read_input_tokens": 31616,
+        "reasoning_output_tokens": 188
+      },
+      "audit": {
+        "validation": {
+          "ok": true,
+          "counts": {
+            "evidence": 2,
+            "references": 0,
+            "biological_findings": 2,
+            "literature_comparisons": 0,
+            "pathways": 0,
+            "cell_type_specificity": 0
+          },
+          "scope": "schema and internal references; scientific claims not verified"
+        },
+        "successful_parquet_read_event_ids": [
+          "item_5"
+        ],
+        "recovered_shell_failures": [
+          {
+            "id": "item_3",
+            "exit_code": 1,
+            "cause": "Optional pandas unavailable; recovered with pyarrow.to_pylist"
+          }
+        ],
+        "usage": {
+          "total_tokens": 53067,
+          "requests": 1,
+          "input_tokens": 50379,
+          "output_tokens": 2688,
+          "cache_read_input_tokens": 31616,
+          "reasoning_output_tokens": 188
+        }
+      }
+    },
+    "SYNTH_BETA": {
+      "status": "completed",
+      "inline_small_input": false,
+      "model": "gpt-5.6-sol",
+      "reasoning_effort": "low",
+      "timeout_seconds": 240.0,
+      "started_at": "2026-10-24T16:54:09.694836+00:00",
+      "finished_at": "2026-10-24T16:55:05.779537+00:00",
+      "contracts": {
+        "prompts/base_scientist_contract.md": {
+          "id": "reconstructed-v1/prompts/base_scientist_contract.md",
+          "sha256": "ac13d8ca0277f2be7234df71868c6aefd225c78124f3f37fd49a9bd006c03f03"
+        },
+        "prompts/findings_report.md": {
+          "id": "reconstructed-v1/prompts/findings_report.md",
+          "sha256": "7f526b954587055ebb7d474949966e6bd6ef5b638b762282914f161ef7d5c128"
+        },
+        "schemas/structured_appendix.schema.json": {
+          "id": "reconstructed-v1/schemas/structured_appendix.schema.json",
+          "sha256": "55addbbd0ab45d86060f5c8a539676237932fc3213e44d9ef14b80eb51dbe7ac"
+        }
+      },
+      "usage": {
+        "total_tokens": 53193,
+        "requests": 1,
+        "input_tokens": 50742,
+        "output_tokens": 2451,
+        "cache_read_input_tokens": 31616,
+        "reasoning_output_tokens": 222
+      },
+      "audit": {
+        "validation": {
+          "ok": true,
+          "counts": {
+            "evidence": 3,
+            "references": 0,
+            "biological_findings": 1,
+            "literature_comparisons": 0,
+            "pathways": 0,
+            "cell_type_specificity": 0
+          },
+          "scope": "schema and internal references; scientific claims not verified"
+        },
+        "successful_parquet_read_event_ids": [
+          "item_5"
+        ],
+        "recovered_shell_failures": [
+          {
+            "id": "item_3",
+            "exit_code": 1,
+            "cause": "Optional pandas unavailable; recovered with pyarrow.to_pylist"
+          }
+        ],
+        "usage": {
+          "total_tokens": 53193,
+          "requests": 1,
+          "input_tokens": 50742,
+          "output_tokens": 2451,
+          "cache_read_input_tokens": 31616,
+          "reasoning_output_tokens": 222
+        }
+      }
+    }
+  },
+  "query": {
+    "status": "completed_with_warnings",
+    "returncode": 0,
+    "errors": [],
+    "warnings": [
+      "Ignoring unknown `features` requirement `ultrafast_mode` from requirements layers: enterprise-managed requirements Ultra Fast mode access (rbac-ultrafast-mode), enterprise-managed requirements Computer History access (rbac-computer-history)"
+    ],
+    "usage": {
+      "total_tokens": 87271,
+      "requests": 1,
+      "input_tokens": 85966,
+      "output_tokens": 1305,
+      "cache_read_input_tokens": 61952,
+      "reasoning_output_tokens": 227
+    },
+    "duration_s": 35.75,
+    "native_tool_counts": {
+      "query_ledger": 1,
+      "describe": 3,
+      "calibrate": 2,
+      "resolve_evidence": 3
+    },
+    "resolved_report_scopes": [
+      "SYNTH_ALPHA",
+      "SYNTH_BETA"
+    ],
+    "empty_describe_results": "Three successful dictionary searches for arithmetic field names returned no matches; statistics came from ledger/evidence results.",
+    "manual_content_review": "Correct means and differences, actual target-scoped evidence IDs, explicit synthetic and non-replication limits; independently reviewed by two agents."
+  },
+  "aggregate_usage": {
+    "total_tokens": 193531,
+    "requests": 3,
+    "input_tokens": 187087,
+    "output_tokens": 6444,
+    "cache_read_input_tokens": 125184,
+    "reasoning_output_tokens": 637
+  },
+  "expected_arithmetic": {
+    "SYNTH_ALPHA": {
+      "control_mean": 10,
+      "perturbed_mean": 14,
+      "difference": 4
+    },
+    "SYNTH_BETA": {
+      "control_mean": 10,
+      "perturbed_mean": 10,
+      "difference": 0
+    }
+  },
+  "corpus_doctor": {
+    "ok": true,
+    "checks": 33,
+    "errors": [],
+    "warnings": []
+  },
+  "regression_tests": {
+    "passed": 50,
+    "source": "../frce_preflight/receipt.json",
+    "rerun_this_live_continuation": false,
+    "runtime_code_unchanged": true
+  },
+  "frce_milestone_complete": true,
+  "warnings_and_recovery": [
+    "Each live build first tried pyarrow.to_pandas without optional pandas installed; it then successfully read the full input with pyarrow.to_pylist and the Python standard library. No package or sandbox change was made during the live run.",
+    "Codex 0.160.0 emitted an unknown enterprise ultrafast_mode requirement warning; native evidence calls succeeded.",
+    "Native sandbox probe emitted a stale arg0 temp-directory cleanup warning and exited 0; no state deletion or chmod was performed."
+  ],
+  "provenance_notes": [
+    "Reports, appendices and query are exact generated bytes. Shell event and native tool snapshots preserve completed items with project/run absolute paths replaced by named placeholders.",
+    "Full original events, manifests, logs, environment, exact launch scripts and host/allocation receipt remain under ignored runs/frce-smoke.*/. Their hashes are recorded below.",
+    "Reproduction commands are in FRCE_HANDOFF.md. Model invocations are capped at 240 seconds each; this is not a token or cost cap."
+  ],
+  "limitations": [
+    "Synthetic values only; no biological evidence.",
+    "Two sequential builds and one direct query; parallel scale and independent replication were not tested.",
+    "A public-data pilot requires a chosen assay contract, controls, multiplicity procedure, holdout and budget before launch."
+  ],
+  "raw_run_hashes_sha256": {
+    "live_builds/SYNTH_ALPHA/run.json": "f7afffdedf152785ef0abe5620d91f8292108bd7c283f80adb908d06c66b2d0f",
+    "live_builds/SYNTH_ALPHA/runner.log": "9242b7c54d07fada0755c440098e01a02908a24610ca6329b3c9cdf896eb056b",
+    "live_builds/SYNTH_ALPHA/events.jsonl": "22de07bf6b5e9927ec3caa5c12c4ebd6e64a157104a769477c34835f5c4be3e9",
+    "live_builds/SYNTH_ALPHA/task.md": "302f2cf0ce94e1c4d103066ace39469313868474cbd0aafea20626d5b2802306",
+    "live_builds/SYNTH_BETA/run.json": "731b7a04b0baedbb17471cb2751031f6949de95a8c330bf3f3bba77b16ac0bc3",
+    "live_builds/SYNTH_BETA/runner.log": "33190461052071bc4984c2029f96f585ecbac4589001d882d05fba778693c2a0",
+    "live_builds/SYNTH_BETA/events.jsonl": "e7043628ba07d6cf3ba52fe413818819e83a0ffb06269dfc11659a86c616ab4e",
+    "live_builds/SYNTH_BETA/task.md": "f45fe5c3520de5fff2bbbb1b6ecf67454d1440903f6a4939cfde4b5a6d9f1143",
+    "live_query/run.json": "439dc34eba03b902f7b5a6619b0d6595d0590248998f0b432c421117efba439a",
+    "live_query/runner.log": "3c533dad8c4d685be366119f8885b542adeb03ad641ebc7e5dfeb7ab2259ce29",
+    "live_query/events.jsonl": "36863c9edc7b759eb470f555a602beeeb53c2a399cc2dbedb8eeed6b8b645242",
+    "live_query/task.md": "f10c9d4e96f72aa2bc4dbfcdd3aeca1ff810c5f4d294c730c2cc25bc1d4d910e",
+    "releases/frce_live_v1/release.json": "895a5dc75422a9c80124b90a040dcef784f4ded0192924739daaccc3a0e85f27"
+  },
+  "files": {
+    "README.md": {
+      "sha256": "8ab18e42b5b2c2b2e1d15d22a61f6e048e795e0ab13aaa07769a4b8d1517ff62"
+    },
+    "SYNTH_ALPHA/report.md": {
+      "sha256": "fea1ca314b46bf306fa65912d3c673186dbbf580a0aea885dd8ebed02edf58ae"
+    },
+    "SYNTH_ALPHA/shell_events.json": {
+      "sha256": "979697627e86cf89ae7b415937f810ad563bd9f3cabf4c212b4a5785c610a004"
+    },
+    "SYNTH_ALPHA/structured_appendix.json": {
+      "sha256": "0980049fade1094dd73a5096287244d47d515cf24cbd8bee3190d4b7a9832a80"
+    },
+    "SYNTH_ALPHA/validation.json": {
+      "sha256": "2fc7785277e79c111c0b088938edbea69006c04262f13a6a48f2348f44b548ba"
+    },
+    "SYNTH_BETA/report.md": {
+      "sha256": "2d14068ae9da8638d3446af998d7219f5124a9cdcb6766a4996aa46b9cea5e9e"
+    },
+    "SYNTH_BETA/shell_events.json": {
+      "sha256": "1fc1f6b50a1cda5b19b88d2d0a97e127f5f33592a6a7dc0cec5c959bd1323434"
+    },
+    "SYNTH_BETA/structured_appendix.json": {
+      "sha256": "43d0a1e10c34f0accaf218d33d8700890fa5d715b602ddd5a6eb9cc25a3c3eb0"
+    },
+    "SYNTH_BETA/validation.json": {
+      "sha256": "c09edd3bb0d6529277396ea43b2772b43f5c04994a071b53684ba5b24fd4e9be"
+    },
+    "doctor-live.json": {
+      "sha256": "b4d0808cc301e8e2ea4e06a613e21890105bcb7147ca5b0b65ac3047d27443dc"
+    },
+    "environment.json": {
+      "sha256": "61fd75fb0aba1e89adee2850c97118500aa18bd35d98298d29d1772ca6baa029"
+    },
+    "launch_commands.json": {
+      "sha256": "349704eaef9eccb6ba5df0f2be8ecbfccdb1c40871899fd124ff3b24e17ad2f7"
+    },
+    "native-probe.log": {
+      "sha256": "6e992b39520b5852902b1194a57794c548e2635add8b9592f05d2f2262d3809b"
+    },
+    "native_tool_calls.json": {
+      "sha256": "69f1bf3dec746efd2ee78b14bdf09a1433f0c184417040801fc3900195b8ca29"
+    },
+    "query.md": {
+      "sha256": "98cbf2856afcc1b2958316353437501e0f70ad08f3dab287a57a14bc9492253f"
+    }
+  }
+}

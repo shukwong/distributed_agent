@@ -1,0 +1,61 @@
+{
+  "evidence": [
+    {
+      "evidence_id": "E001",
+      "evidence_slug": "synthetic_beta_control_values",
+      "cell_type": null,
+      "genes": [
+        "SYNTH_BETA"
+      ],
+      "statistics": "3 labeled samples (B1-B3); readouts 9.0, 10.0, 11.0; arithmetic mean 10.0; minimum 9.0; maximum 11.0.",
+      "description": "Synthetic control-group arithmetic for the SYNTH_BETA software smoke-test fixture; not a biological observation."
+    },
+    {
+      "evidence_id": "E002",
+      "evidence_slug": "synthetic_beta_perturbed_values",
+      "cell_type": null,
+      "genes": [
+        "SYNTH_BETA"
+      ],
+      "statistics": "3 labeled samples (B4-B6); readouts 9.0, 10.0, 11.0; arithmetic mean 10.0; minimum 9.0; maximum 11.0; perturbed-minus-control mean difference 0.0.",
+      "description": "Synthetic perturbed-group arithmetic for SYNTH_BETA. Its values exactly match the synthetic control values; no statistical or biological inference is implied."
+    },
+    {
+      "evidence_id": "E003",
+      "evidence_slug": "synthetic_fixture_metadata",
+      "cell_type": null,
+      "genes": [
+        "SYNTH_BETA"
+      ],
+      "statistics": "6 of 6 SYNTH_BETA rows have dataset_kind=synthetic_smoke_fixture and the same explicit non-biological fixture note.",
+      "description": "Input metadata identifies every SYNTH_BETA row as an invented arithmetic fixture and directs computation of group means only, without significance testing or mechanistic inference."
+    }
+  ],
+  "references": [],
+  "biological_findings": [
+    {
+      "finding_id": "F001",
+      "finding_type": "negative_result",
+      "summary": "Synthetic finding: the constructed SYNTH_BETA perturbed and control groups have identical scalar readout distributions and equal arithmetic means.",
+      "why_it_matters": "This software smoke-test result checks that the reporting pipeline preserves an exact null group contrast without fabricating statistical significance or biological interpretation.",
+      "cell_types": null,
+      "genes": [
+        "SYNTH_BETA"
+      ],
+      "comparators": null,
+      "direction": "no_constructed_group_difference",
+      "confidence": "high",
+      "evidence_ids": [
+        "E001",
+        "E002",
+        "E003"
+      ],
+      "ref_ids": [],
+      "literature_status": null,
+      "main_caveats": "Synthetic arithmetic fixture only; readout meaning and units are unspecified, samples are not documented as biological replicates, target engagement is not separately measured, and no biological conclusion is supported."
+    }
+  ],
+  "literature_comparisons": [],
+  "pathways": [],
+  "cell_type_specificity": []
+}

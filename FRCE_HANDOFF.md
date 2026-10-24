@@ -2,12 +2,12 @@
 
 Prepared 2026-10-24. This document is the starting point for a new Codex task on
 FRCE (called FRC in the conversation). Read `status.md` next, then `BOOTSTRAP.md`.
-FRCE continuation has verified the no-model stages: the 12-row Parquet reads
-inside the real outer enclosure, two deterministic reports package successfully,
-and the reference release doctor reports zero errors. The regression suite now
-has 50 passing tests. See `examples/bootstrap/frce_preflight/receipt.json`.
-Native Codex sandbox and shell-enabled live generation/query still await launch;
-the complete FRCE milestone is not yet established.
+The FRCE shell-enabled milestone is complete. The native sandbox probe, two
+sequential live Parquet-reading builds, validation, release packaging and direct
+native MCP query all passed. See
+[the live receipt](examples/bootstrap/frce_verified_run/receipt.json) for exact
+versions, commands, usage, hashes and diagnostics. The runbook below supports
+reproduction; resuming work does not require rerunning the completed smoke test.
 
 ## Objective and current position
 
@@ -23,10 +23,14 @@ generation supplied the complete tiny input inline and disabled model shell
 and web tools. This established live report authoring and retrieval, but not
 shell-based data analysis or parallel scale.
 
-**Immediate next milestone:** on FRCE, prove normal model shell execution can
-read the supplied Parquet and complete generation → validation → packaging →
-query. Use the synthetic fixture first, with two sequential builds and one
-direct query. Do not count inline-input generation as completing this milestone.
+**Completed FRCE milestone:** normal model shell commands read the supplied
+Parquet in two sequential live builds, followed by validation, packaging and
+one direct native-evidence query. Both framework and native sandboxes remained
+enabled; inline input was not used.
+
+**Next milestone:** select one public cancer/mutation or aging pilot and define
+its analysis and validation protocol before launch. The choice remains open.
+No biological pilot or parallel scaling experiment has started.
 
 ## Repository and materials
 
@@ -35,8 +39,9 @@ direct query. Do not count inline-input generation as completing this milestone.
   follows upstream and does not contain the milestone implementation.
 - Existing draft PR: https://github.com/shukwong/distributed_agent/pull/1
 - Implementation commit: `8ed5d0364088fb326b0078d371ad6b9b7bc92586`.
-  Later commits add the diagnosis and handoff; use the latest branch tip and
-  record its exact SHA in the FRCE receipt.
+- Verified FRCE source: `07a6bfcbbb29009a9db13c72474be51bdc4270f7`.
+  Later commits preserve receipts and documentation. For a fresh reproduction,
+  use the latest branch tip and record its exact SHA in the run receipt.
 - Upstream: https://github.com/jinlabneurogenomics/distributed_agent
   at baseline `c20445d929f5aedce1d539ef6fbd8843b8c06e25`.
 - User-supplied motivating preprint:
@@ -52,6 +57,8 @@ direct query. Do not count inline-input generation as completing this milestone.
 | `examples/bootstrap/generate_fixture.py` | Deterministic reference reports |
 | `examples/bootstrap/make_parquet.py` | Converts the fixture to live-builder input |
 | `examples/bootstrap/probe_outer_python.py` | Checks the actual outer enclosure without a model call |
+| `examples/bootstrap/frce_verified_run/` | Shell-enabled FRCE reports, ledgers, query and hashed receipt |
+| `examples/bootstrap/frce_preflight/receipt.json` | Earlier FRCE no-model verification |
 | `examples/bootstrap/verified_run/report.md` | Previously successful live report |
 | `examples/bootstrap/verified_run/query.md` | Previously successful live answer |
 | `examples/bootstrap/verified_run/receipt.json` | Versions, usage, hashes and checks |
@@ -73,13 +80,23 @@ Full upstream normalization and manuscript reproduction are outside this work.
 
 ## What has actually passed
 
-- 39 regression tests, a wheel build and isolated install/CLI smoke, and `pip check`.
-- Successful live release: 37 integrity checks, zero errors.
-- Live generation using Codex 0.160.0 and `gpt-5.6-sol`: one report, two findings,
-  correct constructed differences, 15,668 total tokens.
-- Direct live query: seven successful native MCP calls, correct scoped evidence
-  citations and arithmetic, 65,635 total tokens including 48,640 cached input.
-  A nonfatal unknown enterprise feature warning remained.
+- FRCE source: 50 regression tests and `pip check`; outer Python/Parquet probe
+  and deterministic two-target reference path passed.
+- Native Codex sandbox probe exited 0. Both live builds used normal shell access
+  and successfully read all 12 Parquet rows in completed command event `item_5`.
+- Live generation with Codex 0.160.0 and `gpt-5.6-sol`: ALPHA produced two evidence
+  rows and two findings; BETA produced three evidence rows and one finding.
+  Their group means and differences match the table below.
+- Packaged live release: 33 doctor checks, zero errors and zero warnings.
+- Direct query: nine successful native MCP calls (`describe`: 3, `calibrate`: 2,
+  `query_ledger`: 1, `resolve_evidence`: 3), correct scoped citations and arithmetic.
+  It exited 0 with `completed_with_warnings` for the known unknown enterprise
+  feature requirement. Both builds recovered from an optional pandas display
+  failure using Arrow directly; the native probe's stale `arg0` cleanup warning
+  was also nonfatal. The live receipt preserves diagnostics and measured usage.
+- Historical Biowulf inline run: 39 tests, wheel build and isolated install/CLI
+  smoke passed; its report, query and receipt remain in `examples/bootstrap/verified_run/`.
+  Wheel smoke was not repeated for the FRCE runtime-only changes.
 - These are synthetic software results, not evidence about real genes or disease.
   Usage is a historical measurement, not a cost or token bound for the next run.
 
@@ -102,8 +119,10 @@ and timeout 124. Codex 0.160.0 masks its reserved daemon socket directory within
 its own shell sandbox, so a nested Codex can see a mode-000 directory even if the
 host directory is correct. The command also used an obsolete extra `linux`
 token. The user subsequently confirmed the corrected direct-terminal probe
-worked. These FRCE results were user-reported; the original task remained on
-Biowulf and did not execute commands on FRCE.
+worked. Those initial results were user-reported; the original task remained on
+Biowulf. The 2026-10-24 FRCE continuation then independently ran the corrected
+native probe and complete live workflow through explicitly authorized host
+execution, preserving both child isolation layers. All completed successfully.
 
 For Codex 0.160.0, the correct probe is:
 
@@ -231,8 +250,9 @@ On a fresh host, still run this probe before model calls. Unset `PYTHONHOME` and
 make pip accept shared packages that disappear inside the enclosure. Passing
 this outer probe does not prove native model-shell execution works.
 
-Keep both the framework enclosure and native `workspace-write` sandbox enabled
-for the initial FRCE attempt. Their combined execution path is still unverified.
+Keep both the framework enclosure and native `workspace-write` sandbox enabled,
+as in the successful FRCE run. Their combined execution path is now verified for
+this tiny fixture in the recorded environment.
 Do not substitute `--inline-small-input` or disable shell tools to make this
 particular acceptance test pass.
 
@@ -308,7 +328,8 @@ accepts textual companions. Builder provenance records the original input hash.
 
 ## Acceptance, outputs and continuation
 
-Call the FRCE milestone complete only after all of these hold:
+The recorded FRCE run satisfies these acceptance criteria. Apply them again
+when reproducing on another environment:
 
 1. Normal model shell commands actually read the declared input; no inline mode.
 2. Live reports validate, contain supported findings and reproduce the +4 and 0
@@ -330,8 +351,9 @@ Run the focused tests after any runtime fix. Repeat wheel smoke only if packagin
 or dependency behavior changes. Preserve failed-run diagnostics and use fresh
 output directories; the builder/packager refuse to overwrite completed results.
 
-After this milestone, select **one** public cancer/mutation or aging pilot. Agree
-on the independent unit of analysis, covariates, null controls, multiple-testing
+Next, select **one** public cancer/mutation or aging pilot; this choice remains
+pending and no pilot has launched. Agree on the independent unit of analysis,
+covariates, null controls, multiple-testing
 procedure and independent replication/holdout before launching a screen. The
 current source-report prompt is Perturb-seq-specific and needs an assay-specific
 contract; arbitrary transcriptomics or microbiome data are not drop-in inputs.

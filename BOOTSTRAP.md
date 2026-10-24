@@ -1,8 +1,11 @@
 # Bootstrap milestone
 
-For continuation on FRCE with normal model shell execution, start with
-[FRCE_HANDOFF.md](FRCE_HANDOFF.md). The live example below records the earlier
-inline-input workaround; it is not the next FRCE acceptance test.
+The FRCE shell-enabled milestone completed on 2026-10-24: two live reports read
+the declared Parquet through normal model shell commands, passed validation and
+packaging, and supported a direct native-evidence query. See the
+[FRCE receipt](examples/bootstrap/frce_verified_run/receipt.json) and
+[FRCE_HANDOFF.md](FRCE_HANDOFF.md) for the verified runbook. The inline-input
+example below preserves the earlier Biowulf workaround.
 
 This research fork starts from upstream commit
 `c20445d929f5aedce1d539ef6fbd8843b8c06e25`. Its first milestone is a working
@@ -27,6 +30,8 @@ packages named `build`.
 - Release-specific dataset descriptions, optional graphs and the active Python
   interpreter for MCP. Synthetic inputs do not inherit the original mouse-brain
   experiment's description.
+- Venv-aware shell execution, read-only external Python mounts, explicit
+  interpreter context, and preservation of caller-selected numerical thread caps.
 - An opt-in complete tiny-input snapshot for live tests without shell access.
 
 ## Reproduce the deterministic path
@@ -45,7 +50,7 @@ packaging, corpus doctor and native MCP queries. Use a fresh output directory
 for each run. Tests need `pytest`; the `analysis` extra provides `pyarrow` for
 the optional live input.
 
-## Reproduce a bounded live build
+## Historical bounded inline build
 
 Authenticate your normal Codex CLI, then create the tiny Parquet:
 
@@ -88,7 +93,25 @@ For a minimal live retrieval check:
   --codex-config-override 'web_search="disabled"'
 ```
 
-## Verified result
+## Verified FRCE result
+
+Source commit `07a6bfcbbb29009a9db13c72474be51bdc4270f7` completed the full
+shell-enabled workflow with both the framework enclosure and native
+`workspace-write` sandbox enabled. Each live build successfully read the
+declared 12-row Parquet. The resulting corpus contains two reports, three
+findings and five evidence rows; its doctor passed with zero errors or warnings.
+The direct query made nine successful native MCP calls and returned the correct
+means, differences and target-scoped citations without biological inference.
+
+Representative reports, structured ledgers, the query answer and the hashed
+receipt are in [examples/bootstrap/frce_verified_run](examples/bootstrap/frce_verified_run/).
+The receipt records commands, versions, usage and diagnostics. Both builds
+recovered from an optional pandas display failure by reading Arrow records
+directly. A known unknown-enterprise-feature warning remained nonfatal; the
+native sandbox probe also exited successfully despite a stale `arg0` cleanup
+warning. No dependency installation or isolation bypass was needed for recovery.
+
+## Historical Biowulf result
 
 The live smoke test completed on 2026-10-22 with Codex 0.160.0 and
 `gpt-5.6-sol`: one generated report, two grounded findings, and seven successful
@@ -107,12 +130,13 @@ configured in `/etc/sysctl.conf`. This disables namespace creation; the ENOSPC
 error is not a disk-space problem or evidence of leaked namespaces. Repair
 requires an administrator-approved environment supporting the required user
 namespaces. A restart, more disk space, or a bubblewrap upgrade cannot change
-that configured limit. Full shell-based research execution remains unverified;
-continue with the FRCE guide linked above.
+that configured limit. The later FRCE result above establishes shell-enabled
+execution for the tiny synthetic fixture in its verified environment.
 
 ## Verification and next scope
 
-Run the focused regression suite and wheel check:
+For code changes, run the relevant regression suite. Repeat wheel verification
+when packaging or dependency behavior changes:
 
 ```bash
 .venv/bin/python -m pytest -q tests
@@ -120,21 +144,22 @@ Run the focused regression suite and wheel check:
 .venv/bin/python scripts/smoke_wheel.py
 ```
 
-FRCE continuation now passes 50 regression tests, the actual outer-enclosure
-Python/Parquet probe, and the deterministic two-target release doctor. The runtime
-preserves venv selection and explicit thread caps, mounts external Python roots
-read-only, and names the interpreter in live tasks. See the
-[FRCE preflight receipt](examples/bootstrap/frce_preflight/receipt.json).
-Native sandbox and shell-enabled live builds/query remain pending; these
-no-model checks do not complete that milestone. With FRCE Python modules, unset
-`PYTHONHOME` and `PYTHONPATH` before venv dependency installation and execution.
+The tested FRCE source passed 50 regression tests and `pip check`, followed by
+the outer Python/Parquet probe, deterministic reference path and live workflow.
+The earlier [preflight receipt](examples/bootstrap/frce_preflight/receipt.json)
+records the no-model checks; the live receipt records completion. With FRCE
+Python modules, unset `PYTHONHOME` and `PYTHONPATH` before venv dependency
+installation and execution. Runtime-only changes did not require repeating the
+previously passing isolated wheel smoke.
 
 [status.md](status.md) records the actual run results, paths, host limitations
 and next action. Model narratives are checked for schema and internal grounding;
 that does not prove scientific accuracy or novelty. The source-report prompt
-still reflects the original Perturb-seq use case. Before applying this to
-cancer, aging or mutations, select a public pilot dataset and implement its
-assay-specific analysis contract, independent replication and null checks.
+still reflects the original Perturb-seq use case. The next decision is one public
+cancer/mutation or aging pilot; that choice remains open and no pilot has launched.
+Before launch, define its independent analysis unit, covariates, null checks,
+multiple-testing procedure, replication/holdout, assay-specific contract and
+bounded compute/model budget.
 
 No thousand-agent execution, biological validation, graph construction, full
 upstream normalization or manuscript reproduction is claimed by this milestone.
