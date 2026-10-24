@@ -6,9 +6,10 @@ Last updated: 2026-10-24 EDT
 
 The FRCE shell-enabled synthetic milestone is complete: generate two reports
 from Parquet through normal model shells, validate and package their evidence,
-and query it through native MCP tools. Next: select one public cancer/mutation
-or aging pilot and define its protocol before launch. A biological pilot and
-parallel scaling have not started.
+and query it through native MCP tools. The user selected **cancer and mutations**
+for the first public-data pilot. A scoped LUAD mutation-association proposal is
+ready; specific protocol agreement and implementation remain pending. Biological
+analysis and parallel scaling have not started.
 
 ## Current State
 
@@ -39,6 +40,14 @@ parallel scaling have not started.
 - Live reports contain three supported findings and five evidence rows in total.
   The direct query retrieved both targets and resolved correctly scoped evidence.
   All results are synthetic software checks, with no biological conclusion.
+- Proposed next pilot: `pilots/luad_mutation_pairs/README.md`, with a
+  machine-readable protocol, source metadata and new report-contract specification.
+  It covers 15 fixed gene pairs in TCGA LUAD and a held-out resected MSK cohort;
+  only metadata were inspected. The user has not yet agreed this specific protocol.
+- Verified candidate inventory: TCGA 566 sequenced samples, MSK 604, all six genes
+  included in observed MSK panels. Final patient eligibility, covariate completeness
+  and person-level overlap remain unaudited. TCGA smoking history is absent from
+  the current clinical schema. These are feasibility findings, not mutation results.
 
 ## Host Diagnosis and FRCE Follow-up
 
@@ -103,14 +112,18 @@ parallel scaling have not started.
 
 1. Read `FRCE_HANDOFF.md`, the local workspace handoff, and the existing run
    outputs; verify the current allocation before resuming.
-2. Resolve the pending pilot choice: public cancer/mutation data or aging data.
-   No dataset, biological research question or pilot launch has been selected.
-3. Before launch, define the independent analysis unit, covariates, null controls,
-   multiple-testing procedure, replication/holdout and assay-specific report
-   contract. The current prompt assumes Perturb-seq and is not a general assay contract.
-4. Set a bounded compute/model budget and restart strategy for the selected pilot.
-   Only then evaluate small-scale parallel execution, failure handling and cost;
-   the synthetic workflow does not establish parallel-scale readiness.
+2. Resolve specific agreement on the proposed LUAD scope and limits in
+   `pilots/luad_mutation_pairs/README.md`; the cancer/mutation direction is settled.
+3. Audit metadata-only eligibility, sample/patient mapping, panel membership,
+   covariate dictionaries/completeness and overlap evidence. Pin source versions
+   and hashes before freezing `protocol.json`; keep MSK mutation outcomes withheld.
+4. Implement deterministic statistics and the new named report contract. The
+   current Perturb-seq prompt cannot be used unchanged. Validate with synthetic
+   controls, then perform development/holdout analysis in the frozen order.
+5. Proposed first agent batch: three fixed pair reports, twelve deterministic
+   imports and one native query over all 15 pairs; serial, ≤240 seconds per model
+   run, no automatic retry. The 300,000-token threshold is a soft launch-stop
+   rule, not a hard cost cap. No pilot job or model invocation has launched.
 
 ## Lessons Learned
 
@@ -133,3 +146,9 @@ parallel scaling have not started.
   `read_table(...).to_pylist()` avoids an unnecessary optional display dependency.
 - Validate actual successful input-read and MCP events, numeric evidence and
   target-scoped citations; schema or completed-turn status alone is insufficient.
+- Cohort metadata can omit essential confounders: TCGA LUAD currently lacks a
+  smoking attribute. Record field availability separately from completeness;
+  absent calls and unassayed genes must remain distinct.
+- Formal two-cohort support uses Holm correction on each pair's conjunction
+  p=max(p_development,p_holdout), plus matching signs; separate cohort corrections
+  alone do not define one familywise replicability procedure.

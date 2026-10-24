@@ -1,0 +1,265 @@
+{
+  "protocol_id": "luad_mutation_pairs_v1_draft",
+  "status": "proposed_not_frozen",
+  "created": "2026-10-24",
+  "domain_choice": "cancer_and_mutations",
+  "user_agreed_domain": true,
+  "user_agreed_specific_protocol": false,
+  "outcomes_retrieved": false,
+  "runtime_contract_implemented": false,
+  "question": "Conditional pairwise somatic mutation associations in primary stage I-III lung adenocarcinoma, with external cohort corroboration.",
+  "cohorts": [
+    {
+      "study_id": "luad_tcga_pan_can_atlas_2018",
+      "role": "development",
+      "mutation_profile": "luad_tcga_pan_can_atlas_2018_mutations",
+      "advertised_samples": 566,
+      "final_eligible_patients": null,
+      "age_field": "AGE",
+      "sex_field": "SEX",
+      "stage_field": "AJCC_PATHOLOGIC_TUMOR_STAGE",
+      "smoking_field": null
+    },
+    {
+      "study_id": "luad_mskcc_2020",
+      "role": "external_holdout",
+      "mutation_profile": "luad_mskcc_2020_mutations",
+      "advertised_samples": 604,
+      "final_eligible_patients": null,
+      "age_field": "AGE_AT_SURGERY",
+      "sex_field": "SEX",
+      "stage_field": "PATHOLOGIC_STAGE",
+      "smoking_field": "SMOKING_HISTORY"
+    }
+  ],
+  "genes_entrez": {
+    "BRAF": 673,
+    "EGFR": 1956,
+    "KEAP1": 9817,
+    "KRAS": 3845,
+    "STK11": 6794,
+    "TP53": 7157
+  },
+  "pairs": [
+    "BRAF__EGFR",
+    "BRAF__KEAP1",
+    "BRAF__KRAS",
+    "BRAF__STK11",
+    "BRAF__TP53",
+    "EGFR__KEAP1",
+    "EGFR__KRAS",
+    "EGFR__STK11",
+    "EGFR__TP53",
+    "KEAP1__KRAS",
+    "KEAP1__STK11",
+    "KEAP1__TP53",
+    "KRAS__STK11",
+    "KRAS__TP53",
+    "STK11__TP53"
+  ],
+  "family_size": 15,
+  "units": {
+    "independent_observation": "patient",
+    "source_observation": "selected_primary_tumor_sample",
+    "report": "canonical_gene_pair",
+    "sample_selection": [
+      "eligible primary resection sample",
+      "earliest recorded collection date",
+      "lexical sample ID tie-break or missing-date fallback"
+    ]
+  },
+  "eligibility": {
+    "stages": [
+      "I",
+      "II",
+      "III"
+    ],
+    "assay_roster_required": true,
+    "unknown_assay_state": "missing",
+    "negative_label": "no qualifying mutation detected in nominally assayed cases",
+    "explicit_patient_mapping_required": true,
+    "pair_complete_cases_min": 100,
+    "mutated_per_gene_min": 20,
+    "negative_per_gene_min": 20,
+    "clinical_complete_case_retention_min": 0.8,
+    "unavailable_test_correction_p": 1.0,
+    "unavailable_result_status": "not_evaluable",
+    "clinical_retention_denominator": "eligible deduplicated assay-qualified patients for the pair before clinical covariate exclusion"
+  },
+  "variants": {
+    "include": [
+      "Frame_Shift_Del",
+      "Frame_Shift_Ins",
+      "In_Frame_Del",
+      "In_Frame_Ins",
+      "Missense_Mutation",
+      "Nonsense_Mutation",
+      "Nonstop_Mutation",
+      "Splice_Site",
+      "Translation_Start_Site"
+    ],
+    "exclude_event_types": [
+      "copy_number",
+      "structural_variant",
+      "fusion"
+    ],
+    "unknown_class_policy": "exclude_and_count",
+    "dedup_key": [
+      "sample_id",
+      "reference_build",
+      "chromosome",
+      "start",
+      "end",
+      "reference_allele",
+      "alternate_allele"
+    ],
+    "per_gene_status": "at_least_one_qualifying_somatic_variant",
+    "oncogenicity_assumed": false
+  },
+  "background_count": {
+    "source": "same filtered and deduplicated MAF records",
+    "gene_set": "intersection of observed IMPACT341/IMPACT410/IMPACT468 gene members, excluding all six hypothesis genes; apply identically to TCGA",
+    "gene_set_snapshot_sha256": null,
+    "units": "unique qualifying variant count, not mutations per megabase",
+    "transform": "log1p",
+    "subtract_provider_mutation_count": false
+  },
+  "primary_model": {
+    "method": "Firth logistic regression",
+    "implementation_candidate": "R logistf 1.26.1; installation and final pin pending",
+    "orientation": "alphabetically first gene exposure; second gene binary outcome",
+    "covariates": [
+      "age/10",
+      "sex categorical",
+      "stage categorical",
+      "log1p(background_variant_count)"
+    ],
+    "msk_additional_covariates": [
+      "gene_panel categorical"
+    ],
+    "missingness": "complete cases",
+    "reference_levels": {
+      "stage": "I",
+      "gene_panel": "IMPACT341",
+      "sex": "freeze from metadata-only category dictionary before outcomes"
+    },
+    "constant_covariates": "drop and record before fit; never outcome p-value selection",
+    "test": "two-sided penalized profile-likelihood",
+    "confidence_interval": "95% penalized profile-likelihood",
+    "fit_failure": "not_evaluable; preserve diagnostics"
+  },
+  "multiplicity": {
+    "within_cohort": "Holm over fixed 15 primary p values",
+    "conjunction_p": "max(p_TCGA,p_MSK)",
+    "external_support": "Holm over 15 conjunction p values <=0.05 and matching primary adjusted effect signs",
+    "alpha": 0.05,
+    "independence_of_cohort_p_values_assumed": false,
+    "unavailable_p_for_correction": 1.0
+  },
+  "sensitivity": {
+    "required": [
+      "omit background burden on same complete cases",
+      "MSK smoking history never/ever; compare base/extended models on same known-smoking subset"
+    ],
+    "optional_if_mapping_frozen": [
+      "MSK pack-years",
+      "MSK predominant histologic subtype"
+    ],
+    "sign_reversal_label": "sensitivity_conflicted",
+    "smoking_interval_crosses_one_label": "inconclusive",
+    "sensitivity_cannot_rescue_primary": true,
+    "tcga_smoking_limitation": "No smoking field in current cohort metadata; residual confounding remains.",
+    "smoking_supported_rule": "sign agrees with both same-subset base and full primary model, and smoking-adjusted 95% interval excludes 1"
+  },
+  "holdout": {
+    "cohort": "luad_mskcc_2020",
+    "mutation_outcomes_released": false,
+    "release_after": [
+      "protocol/source/metadata mapping freeze",
+      "synthetic tests and TCGA implementation review"
+    ],
+    "max_releases": 1,
+    "mutation_files_visible_to_development_worker": false,
+    "patient_disjointness_verified": false,
+    "independent_replication_claim_requires_overlap_audit": true,
+    "fallback_label": "external corroboration with unresolved overlap"
+  },
+  "controls": {
+    "synthetic_fixture_cases": [
+      "conditional independence",
+      "known association",
+      "separation",
+      "duplicate patients",
+      "multiple variants per gene",
+      "unassayed gene",
+      "missing covariates",
+      "unknown variant class",
+      "source hash mismatch"
+    ],
+    "global_null_replicates": 100,
+    "seed": 20261024,
+    "null_diagnostic": "report familywise rejection rate and 95% interval; investigate if lower bound exceeds 0.05",
+    "literature_pattern_recovery_required": false
+  },
+  "reports": {
+    "model_authored_pairs": [
+      "EGFR__KRAS",
+      "KRAS__STK11",
+      "KEAP1__STK11"
+    ],
+    "deterministic_import_pairs": [
+      "BRAF__EGFR",
+      "BRAF__KEAP1",
+      "BRAF__KRAS",
+      "BRAF__STK11",
+      "BRAF__TP53",
+      "EGFR__KEAP1",
+      "EGFR__STK11",
+      "EGFR__TP53",
+      "KEAP1__KRAS",
+      "KEAP1__TP53",
+      "KRAS__TP53",
+      "STK11__TP53"
+    ],
+    "query_scope": "all 15 pairs including not_evaluable and null outcomes",
+    "new_contract": "luad_mutation_pairs_v1",
+    "patient_identifiers_sent_to_models": false,
+    "new_contract_required_before_live_generation": true
+  },
+  "proposed_limits": {
+    "input_download_bytes": 536870912,
+    "working_output_bytes": 2147483648,
+    "cpus": 1,
+    "memory_gib": 8,
+    "stage_wall_minutes": 90,
+    "model_builds_max": 3,
+    "model_queries_max": 1,
+    "model_timeout_seconds": 240,
+    "max_concurrent_model_runs": 1,
+    "automatic_model_retries": 0,
+    "total_reported_token_launch_stop_threshold": 300000,
+    "hard_token_cap": false,
+    "hard_spending_cap": false,
+    "token_threshold_policy": "stop before another launch if accumulated usage >=threshold; one call may overshoot",
+    "gpu": false
+  },
+  "prelaunch_gates": [
+    "specific protocol agreement",
+    "immutable sources and downloaded payload hashes",
+    "metadata completeness/category mapping",
+    "sample-to-patient/assay roster checks",
+    "overlap/provenance qualification",
+    "new contract and deterministic analysis implementation",
+    "meaningful synthetic controls and null diagnostics",
+    "verified active allocation or scheduled job"
+  ],
+  "outputs": [
+    "source_manifest.json",
+    "eligibility_and_exclusions.tsv",
+    "pair_statistics.tsv for all 15 pairs",
+    "aggregate input parquet",
+    "15 validated reports (3 model-authored,12 deterministic)",
+    "native evidence query",
+    "usage and failure receipt"
+  ]
+}

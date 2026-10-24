@@ -155,11 +155,11 @@ previously passing isolated wheel smoke.
 [status.md](status.md) records the actual run results, paths, host limitations
 and next action. Model narratives are checked for schema and internal grounding;
 that does not prove scientific accuracy or novelty. The source-report prompt
-still reflects the original Perturb-seq use case. The next decision is one public
-cancer/mutation or aging pilot; that choice remains open and no pilot has launched.
-Before launch, define its independent analysis unit, covariates, null checks,
-multiple-testing procedure, replication/holdout, assay-specific contract and
-bounded compute/model budget.
+still reflects the original Perturb-seq use case. The user selected cancer and
+mutations. The [LUAD pilot proposal](pilots/luad_mutation_pairs/README.md) defines
+candidate cohorts, patient-level analysis, controls, multiplicity, holdout and
+bounded model work. Specific protocol agreement, metadata audit and a new
+assay-specific implementation remain pending; no pilot has launched.
 
 No thousand-agent execution, biological validation, graph construction, full
 upstream normalization or manuscript reproduction is claimed by this milestone.

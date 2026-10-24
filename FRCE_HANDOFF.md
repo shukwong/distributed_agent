@@ -28,9 +28,11 @@ Parquet in two sequential live builds, followed by validation, packaging and
 one direct native-evidence query. Both framework and native sandboxes remained
 enabled; inline input was not used.
 
-**Next milestone:** select one public cancer/mutation or aging pilot and define
-its analysis and validation protocol before launch. The choice remains open.
-No biological pilot or parallel scaling experiment has started.
+**Next milestone:** the user selected cancer and mutations. Review the concrete
+[LUAD mutation-pair pilot proposal](pilots/luad_mutation_pairs/README.md), then
+agree its specific scope, complete the metadata audit and implement its assay
+contract before launch. No biological pilot or parallel scaling experiment has
+started; no mutation outcomes were inspected during scoping.
 
 ## Repository and materials
 
@@ -351,8 +353,9 @@ Run the focused tests after any runtime fix. Repeat wheel smoke only if packagin
 or dependency behavior changes. Preserve failed-run diagnostics and use fresh
 output directories; the builder/packager refuse to overwrite completed results.
 
-Next, select **one** public cancer/mutation or aging pilot; this choice remains
-pending and no pilot has launched. Agree on the independent unit of analysis,
+Next, complete the proposed **cancer/mutation** pilot scope in
+`pilots/luad_mutation_pairs/`; the specific LUAD protocol remains proposed and
+no pilot has launched. Agree on the independent unit of analysis,
 covariates, null controls, multiple-testing
 procedure and independent replication/holdout before launching a screen. The
 current source-report prompt is Perturb-seq-specific and needs an assay-specific
